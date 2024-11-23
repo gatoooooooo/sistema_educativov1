@@ -31,6 +31,44 @@ Dashboard Page - Admin Panel
   <div class="row">
     <div class="col-lg-8">
         <div class="row">
+        <div class="col-md-6 mt-5 mb-3">
+                <div class="card">
+                    <div class="seo-fact sbg1">
+                        <a href="{{ route('admin.estudiantes.index') }}">
+                            <div class="p-4 d-flex justify-content-between align-items-center">
+                                <div class="seofct-icon"><i class="fa fa-users"></i>Estudiantes</div>
+                                <h2>{{ $total_estudiante }}</h2>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mt-5 mb-3">
+                <div class="card">
+                    <div class="seo-fact sbg1">
+                        <a href="{{ route('admin.docentes.index') }}">
+                            <div class="p-4 d-flex justify-content-between align-items-center">
+                                <div class="seofct-icon"><i class="fa fa-users"></i>docentes</div>
+                                <h2>{{ $total_docente }}</h2>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        <div class="col-md-6 mt-5 mb-3">
+                <div class="card">
+                    <div class="seo-fact sbg1">
+                        <a href="{{ route('admin.cursos.index') }}">
+                            <div class="p-4 d-flex justify-content-between align-items-center">
+                                <div class="seofct-icon"><i class="fa fa-book"></i>cursos</div>
+                                <h2>{{ $total_curso }}</h2>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+           
             <div class="col-md-6 mt-5 mb-3">
                 <div class="card">
                     <div class="seo-fact sbg1">
@@ -59,7 +97,7 @@ Dashboard Page - Admin Panel
                 <div class="card">
                     <div class="seo-fact sbg3">
                         <div class="p-4 d-flex justify-content-between align-items-center">
-                            <div class="seofct-icon">Permissions</div>
+                            <div class="seofct-icon"><i class="fa fa-check-circle-o"></i>Permissions</div>
                             <h2>{{ $total_permissions }}</h2>
                         </div>
                     </div>
