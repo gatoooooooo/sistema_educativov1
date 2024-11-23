@@ -9,13 +9,13 @@ class CreateHorariosTable extends Migration
     public function up()
     {
         Schema::create('horarios', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('curso_id')->constrained()->onDelete('cascade'); // Relación con la tabla de cursos
-            $table->string('dia'); // Día de la semana
-            $table->time('hora_inicio'); // Hora de inicio
-            $table->time('hora_fin'); // Hora de fin
-            $table->time('hora_recreo')->nullable(); // Hora de recreo, este campo es opcional
-            $table->timestamps();
+            $table->id(); 
+            $table->foreignId('curso_id')->constrained('cursos')->onDelete('cascade'); 
+            $table->string('dia', 15);
+            $table->time('hora_inicio');
+            $table->time('hora_fin'); 
+            $table->time('hora_recreo')->nullable(); 
+            $table->timestamps(); 
         });
     }
 

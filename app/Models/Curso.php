@@ -16,4 +16,12 @@ class Curso extends Model
         'fecha_inicio',
         'fecha_fin',
     ];
+    public function horarios()
+    {
+        return $this->hasMany(Horario::class);
+    }
+    public function evaluaciones()
+    {
+        return $this->hasMany(Evaluacion::class, 'curso_id');
+    }
 }
