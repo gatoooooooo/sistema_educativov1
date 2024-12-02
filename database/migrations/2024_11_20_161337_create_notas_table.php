@@ -10,14 +10,17 @@ class CreateNotasTable extends Migration
     {
         Schema::create('notas', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('registro_estudiante_id')->constrained('registro_estudiantes')->onDelete('cascade');
-            $table->foreignId('curso_id')->constrained('cursos')->onDelete('cascade');
-            $table->decimal('nota1', 5, 2);
-            $table->decimal('nota2', 5, 2);
-            $table->decimal('nota3', 5, 2);
-            $table->date('fecha');
-            $table->text('comentarios')->nullable(); // Campo opcional
+            $table->unsignedBigInteger('registro_estudiante_id'); // FK a registro_estudiantes
+            $table->unsignedBigInteger('curso_id'); // FK a cursos
+            $table->string('nota1')->nullable();
+            $table->string('nota2')->nullable();
+            $table->string('nota3')->nullable();
+            $table->date('fecha')->nullable();
+            $table->text('comentarios')->nullable();
             $table->timestamps();
+    
+            $table->foreign('registro_estudiante_id')->references('id')->on('registro_estudiantes')->onDelete('cascade');
+            $table->foreign('curso_id')->references('id')->on('cursos')->onDelete('cascade');
         });
     }
 

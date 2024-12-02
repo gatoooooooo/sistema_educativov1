@@ -44,42 +44,42 @@
                         <div class="data-tables">
                             <table id="dataTable" class="table text-center">
                                 <thead class="bg-light">
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Nombre</th>
-                                        <th>Apellido</th>
-                                        <th>DNI</th>
-                                        <th>Fecha Nacimiento</th>
-                                        <th>Correo</th>
-                                        <th>Dirección</th>
-                                        <th>Teléfono</th>
-                                        <th>Acciones</th>
-                                    </tr>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Nombre Completo</th>
+                                    <th>Grado</th>
+                                    <th>Sección</th>
+                                    <th>Fecha de Ingreso</th>
+                                    <!--<th>Promedio</th>-->>
+                                    <th>Nombre del Padre</th>
+                                    <th>Nombre de la Madre</th>
+                                    <th>Acciones</th>
+                                </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($estudiantes as $estudiante)
-                                        <tr>
-                                            <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $estudiante->nombre }}</td>
-                                            <td>{{ $estudiante->apellido }}</td>
-                                            <td>{{ $estudiante->dni }}</td>
-                                            <td>{{ $estudiante->fecha_nacimiento }}</td>
-                                            <td>{{ $estudiante->correo }}</td>
-                                            <td>{{ $estudiante->direccion }}</td>
-                                            <td>{{ $estudiante->telefono }}</td>
-                                            <td>
-                                                <a href="{{ route('admin.estudiantes.edit', $estudiante->id) }}" class="btn btn-success btn-sm">Editar</a>
-                                                <a href="#" class="btn btn-danger btn-sm" 
-                                                   onclick="event.preventDefault(); document.getElementById('delete-form-{{ $estudiante->id }}').submit();">
-                                                    Eliminar
-                                                </a>
-                                                <form id="delete-form-{{ $estudiante->id }}" action="{{ route('admin.estudiantes.destroy', $estudiante->id) }}" method="POST" style="display: none;">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                </form>
-                                            </td>
-                                        </tr>
-                                    @endforeach
+                                @foreach ($estudiantes as $estudiante)
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $estudiante->nombre_completo }}</td>
+                                        <td>{{ $estudiante->grado }}</td>
+                                        <td>{{ $estudiante->seccion }}</td>
+                                        <td>{{ $estudiante->fecha_ingreso }}</td>
+                                       <!--<td>{{ $estudiante->promedio }}</td>-->
+                                        <td>{{ $estudiante->nombre_padre }}</td>
+                                        <td>{{ $estudiante->nombre_madre }}</td>
+                                        <td>
+                                            <a href="{{ route('admin.estudiantes.edit', $estudiante->id) }}" class="btn btn-success btn-sm">Editar</a>
+                                            <a href="#" class="btn btn-danger btn-sm"
+                                               onclick="event.preventDefault(); document.getElementById('delete-form-{{ $estudiante->id }}').submit();">
+                                                Eliminar
+                                            </a>
+                                            <form id="delete-form-{{ $estudiante->id }}" action="{{ route('admin.estudiantes.destroy', $estudiante->id) }}" method="POST" style="display: none;">
+                                                @csrf
+                                                @method('DELETE')
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
                                 </tbody>
                             </table>
                         </div>

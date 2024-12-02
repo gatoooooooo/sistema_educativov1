@@ -9,19 +9,27 @@ class CreateDocentesTable extends Migration
     public function up()
     {
         Schema::create('docentes', function (Blueprint $table) {
-            $table->id();  // ID autoincrementable
-            $table->string('nombre');  // Nombre del docente
-            $table->string('apellido');  // Apellido del docente
-            $table->string('correo_electronico')->unique();  // Correo electrónico, único
-            $table->string('direccion')->nullable();  // Dirección (opcional)
-            $table->string('telefono')->nullable();  // Teléfono (opcional)
-            $table->string('dni')->unique();  // DNI único
-            $table->timestamps();  // Fecha de creación y actualización
+            $table->id();
+            $table->string('nombre_completo');
+            $table->string('direccion')->nullable();
+            $table->string('telefono')->nullable();
+            $table->string('correo_electronico')->nullable();
+            $table->string('materia');
+            $table->date('fecha_contratacion');
+            $table->string('titulo_academico')->nullable();
+            $table->text('experiencia_educativa')->nullable();
+            $table->decimal('salario', 8, 2)->nullable();
+            $table->string('horario')->nullable();
+            $table->string('estado_contrato');
+            // Agregamos los campos de documento
+            $table->string('documento_tipo'); // Tipo de documento (DNI, RUC, etc.)
+            $table->string('documento_numero'); // Número del documento
+            $table->timestamps();
         });
     }
 
     public function down()
     {
-        Schema::dropIfExists('docentes');  // Elimina la tabla si la migración se revierte
+        Schema::dropIfExists('docentes');
     }
 }

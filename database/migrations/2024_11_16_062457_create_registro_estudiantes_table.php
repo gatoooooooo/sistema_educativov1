@@ -4,19 +4,26 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class CreateRegistroEstudiantesTable extends Migration
 {
     public function up()
     {
         Schema::create('registro_estudiantes', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre', 100);
-            $table->string('apellido', 100);
-            $table->string('dni', 20)->unique();
-            $table->date('fecha_nacimiento');
-            $table->string('correo', 150)->unique();
-            $table->string('direccion', 255)->nullable();
-            $table->string('telefono', 20)->nullable();
+            $table->string('nombre_completo');
+            $table->string('direccion')->nullable();
+            $table->string('telefono')->nullable();
+            $table->string('correo_electronico')->nullable();
+            $table->string('grado');
+            $table->string('seccion');
+            $table->date('fecha_ingreso');
+
+            $table->string('nombre_padre')->nullable();
+            $table->string('nombre_madre')->nullable();
+            $table->string('telefono_padre')->nullable();
+            $table->string('telefono_madre')->nullable();
+            $table->string('documento_tipo');  // Tipo de documento
+            $table->string('documento_numero');  // Número de documento
             $table->timestamps();
         });
     }
@@ -25,4 +32,4 @@ return new class extends Migration
     {
         Schema::dropIfExists('registro_estudiantes');
     }
-};
+}

@@ -7,66 +7,77 @@ use Illuminate\Http\Request;
 
 class EstudianteController extends Controller
 {
-    
-    public function index()
-    {
-        $estudiantes = Estudiante::all();
-        return view('estudiantes.index', compact('estudiantes'));// Renderiza la vista con los datos
-    }
-
-
+    // Mostrar el formulario para crear un nuevo estudiante
     public function create()
     {
-        return view('estudiantes.create'); 
+        return view('estudiantes.create');
     }
 
-    
+    // Guardar un nuevo estudiante en la base de datos
     public function store(Request $request)
     {
         $request->validate([
-            'nombre' => 'required|string|max:255',
-            'apellido' => 'required|string|max:255',
-            'dni' => 'required|string|max:20|unique:registro_estudiantes,dni',
-            'correo' => 'required|email|unique:registro_estudiantes,correo',
-            'fecha_nacimiento' => 'nullable|date',
-            'direccion' => 'nullable|string|max:255',
-            'telefono' => 'nullable|string|max:20',
+            'nombre_completo' => 'required|string|max:255',
+            'grado' => 'required|string|max:255',
+            'seccion' => 'required|string|max:255',
+            'fecha_ingreso' => 'required|date',
+
+            'nombre_padre' => 'nullable|string|max:255',
+            'nombre_madre' => 'nullable|string|max:255',
+            'telefono_padre' => 'nullable|string|max:15',
+            'telefono_madre' => 'nullable|string|max:15',
+            'documento_tipo' => 'nullable|string|max:50',
+            'documento_numero' => 'nullable|string|max:50|unique:registro_estudiantes',
         ]);
 
         Estudiante::create($request->all());
 
-        return redirect()->route('admin.estudiantes.index')->with('success', 'Estudiante creado exitosamente.');
+        return redirect()->route('admin.estudiantes.index');
     }
 
-    
-    public function edit(Estudiante $estudiante)
+    // Mostrar todos los estudiantes
+    public function index()
     {
-        return view('estudiantes.edit', compact('estudiante')); // Pasa el estudiante a la vista
+        $estudiantes = Estudiante::all();
+        return view('estudiantes.index', compact('estudiantes'));
     }
 
-    
-    public function update(Request $request, Estudiante $estudiante)
+    // Mostrar el formulario para editar un estudiante
+    public function edit($id)
+    {
+        $estudiante = Estudiante::findOrFail($id);
+        return view('estudiantes.edit', compact('estudiante'));
+    }
+
+    // Actualizar los datos de un estudiante
+    public function update(Request $request, $id)
     {
         $request->validate([
-            'nombre' => 'required|string|max:255',
-            'apellido' => 'required|string|max:255',
-            'dni' => 'required|string|max:20|unique:registro_estudiantes,dni,' . $estudiante->id,
-            'correo' => 'required|email|unique:registro_estudiantes,correo,' . $estudiante->id,
-            'fecha_nacimiento' => 'nullable|date',
-            'direccion' => 'nullable|string|max:255',
-            'telefono' => 'nullable|string|max:20',
+            'nombre_completo' => 'required|string|max:255',
+            'grado' => 'required|string|max:255',
+            'seccion' => 'required|string|max:255',
+            'fecha_ingreso' => 'required|date',
+            //'promedio' => 'nullable|numeric|min:0|max:10',
+            'nombre_padre' => 'nullable|string|max:255',
+            'nombre_madre' => 'nullable|string|max:255',
+            'telefono_padre' => 'nullable|string|max:15',
+            'telefono_madre' => 'nullable|string|max:15',
+            'documento_tipo' => 'nullable|string|max:50',
+            'documento_numero' => 'nullable|string|max:50|unique:registro_estudiantes,documento_numero,' . $id,
         ]);
 
+        $estudiante = Estudiante::findOrFail($id);
         $estudiante->update($request->all());
 
-        return redirect()->route('admin.estudiantes.index')->with('success', 'Estudiante actualizado exitosamente.');
+        return redirect()->route('admin.estudiantes.index');
     }
 
-    
-    public function destroy(Estudiante $estudiante)
+    // Eliminar un estudiante
+    public function destroy($id)
     {
-        $estudiante->delete(); 
+        $estudiante = Estudiante::findOrFail($id);
+        $estudiante->delete();
 
-        return redirect()->route('admin.estudiantes.index')->with('success', 'Estudiante eliminado exitosamente.');
+        return redirect()->route('admin.estudiantes.index');
     }
 }

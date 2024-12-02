@@ -16,18 +16,28 @@ class DocenteController extends Controller
     // Guardar un nuevo docente en la base de datos
     public function store(Request $request)
     {
+        // Validación de los datos del formulario
         $request->validate([
-            'nombre' => 'required|string|max:255',
-            'apellido' => 'required|string|max:255',
-            'correo_electronico' => 'required|email|unique:docentes',
+            'nombre_completo' => 'required|string|max:255',
             'direccion' => 'nullable|string|max:255',
             'telefono' => 'nullable|string|max:15',
-            'dni' => 'required|string|max:15|unique:docentes',
+            'correo_electronico' => 'required|email|unique:docentes',
+            'materia' => 'required|string|max:255',
+            'fecha_contratacion' => 'required|date',
+            'titulo_academico' => 'nullable|string|max:255',
+            'experiencia_educativa' => 'nullable|string',
+            'salario' => 'nullable|numeric',
+            'horario' => 'nullable|string',
+            'estado_contrato' => 'required|string|max:50',
+            'documento_tipo' => 'required|string|max:50',  // Tipo de documento
+            'documento_numero' => 'required|string|max:50|unique:docentes', // Número de documento
         ]);
 
+        // Crear un nuevo docente
         Docente::create($request->all());
 
-        return redirect()->route('admin.docentes.index');
+        // Redirigir a la vista de listado de docentes
+        return redirect()->route('admin.docentes.index')->with('success', 'Docente creado correctamente');
     }
 
     // Mostrar todos los docentes
@@ -47,27 +57,39 @@ class DocenteController extends Controller
     // Actualizar los datos de un docente
     public function update(Request $request, $id)
     {
+        // Validación de los datos del formulario
         $request->validate([
-            'nombre' => 'required|string|max:255',
-            'apellido' => 'required|string|max:255',
-            'correo_electronico' => 'required|email|unique:docentes,correo_electronico,' . $id,
+            'nombre_completo' => 'required|string|max:255',
             'direccion' => 'nullable|string|max:255',
             'telefono' => 'nullable|string|max:15',
-            'dni' => 'required|string|max:15|unique:docentes,dni,' . $id,
+            'correo_electronico' => 'required|email|unique:docentes,correo_electronico,' . $id,
+            'materia' => 'required|string|max:255',
+            'fecha_contratacion' => 'required|date',
+            'titulo_academico' => 'nullable|string|max:255',
+            'experiencia_educativa' => 'nullable|string',
+            'salario' => 'nullable|numeric',
+            'horario' => 'nullable|string',
+            'estado_contrato' => 'required|string|max:50',
+            'documento_tipo' => 'required|string|max:50',  // Tipo de documento
+            'documento_numero' => 'required|string|max:50|unique:docentes,documento_numero,' . $id, // Número de documento
         ]);
 
+        // Encontrar y actualizar los datos del docente
         $docente = Docente::findOrFail($id);
         $docente->update($request->all());
 
-        return redirect()->route('admin.docentes.index');
+        // Redirigir a la vista de listado de docentes
+        return redirect()->route('admin.docentes.index')->with('success', 'Docente actualizado correctamente');
     }
 
     // Eliminar un docente
     public function destroy($id)
     {
+        // Encontrar y eliminar el docente
         $docente = Docente::findOrFail($id);
         $docente->delete();
 
-        return redirect()->route('admin.docentes.index');
+        // Redirigir a la vista de listado de docentes
+        return redirect()->route('admin.docentes.index')->with('success', 'Docente eliminado correctamente');
     }
 }

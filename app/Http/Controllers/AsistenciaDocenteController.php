@@ -30,7 +30,7 @@ class AsistenciaDocenteController extends Controller
 
         AsistenciaDocente::create($request->all());
 
-        return redirect()->route('asistencias_docentes.index')->with('success', 'Asistencia registrada correctamente.');
+        return redirect()->route('admin.asistencias_docentes.index')->with('success', 'Asistencia registrada correctamente.');
     }
 
     public function edit($id)
@@ -58,6 +58,6 @@ class AsistenciaDocenteController extends Controller
         $asistencia = AsistenciaDocente::findOrFail($id);
         $asistencia->delete();
 
-        return redirect()->route('asistencias_docentes.index')->with('success', 'Asistencia eliminada correctamente.');
+        return redirect()->route('admin.asistencias_docentes.index')->with('success', 'Asistencia eliminada correctamente.');
     }
 }

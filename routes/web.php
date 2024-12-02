@@ -20,6 +20,10 @@ use App\Http\Controllers\AsistenciaDocenteController;
 use App\Http\Controllers\EvaluacionController;
 use App\Http\Controllers\PagoController;
 use App\Http\Controllers\MensajeController;
+use App\Http\Controllers\AsistenciaController;
+use App\Http\Controllers\PersonaController;
+use App\Http\Controllers\SeccionController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -77,15 +81,21 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('estudiantes/{estudiante}/edit', [EstudianteController::class, 'edit'])->name('estudiantes.edit');
     Route::put('estudiantes/{estudiante}', [EstudianteController::class, 'update'])->name('estudiantes.update');
     Route::delete('estudiantes/{estudiante}', [EstudianteController::class, 'destroy'])->name('estudiantes.destroy');
+    Route::get('/asistencias/marcar/{id}', [AsistenciaController::class, 'marcarAsistencia'])->name('asistencias.marcar');
+
 });
 
 Route::prefix('admin')->name('admin.')->group(function () {
-  Route::resource('notas', NotaController::class);
+  Route::get('/notas', [NotaController::class, 'index'])->name('notas.index');
+  Route::get('/notas/create', [NotaController::class, 'create'])->name('notas.create');
+  Route::post('/notas', [NotaController::class, 'store'])->name('notas.store');  // Ruta correcta
 });
 
+
 Route::prefix('admin')->name('admin.')->group(function () {
-  Route::resource('promedios', PromedioController::class);
-  Route::get('promedios/generar/{registroEstudianteId}/{cursoId}', [PromedioController::class, 'generarPromedio'])->name('promedios.generar');
+  Route::get('/promedios', [PromedioController::class, 'index'])->name('promedios.index');
+  Route::get('/promedios/create', [PromedioController::class, 'create'])->name('promedios.create');
+  Route::post('/promedios', [PromedioController::class, 'store'])->name('promedios.store');
 });
 
 
@@ -99,20 +109,50 @@ Route::prefix('admin')->name('admin.')->group(function () {
 });
 
 
+Route::prefix('admin')->name('admin.')->group(function () {
+  Route::get('horarios', [HorariosController::class, 'index'])->name('horarios.index');
+  Route::get('horarios/create', [HorariosController::class, 'create'])->name('horarios.create');
+  Route::post('horarios', [HorariosController::class, 'store'])->name('horarios.store');
+  Route::get('horarios/{horario}/edit', [HorariosController::class, 'edit'])->name('horarios.edit');
+  Route::put('horarios/{horario}', [HorariosController::class, 'update'])->name('horarios.update');
+  Route::delete('horarios/{horario}', [HorariosController::class, 'destroy'])->name('horarios.destroy');
+});
 
 
 Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
-  Route::resource('asistencias', AsistenciaEstudianteController::class);
+
+    Route::get('asistencias', [AsistenciaController::class, 'index'])->name('asistencias.index');
+    Route::get('asistencias/create', [AsistenciaController::class, 'create'])->name('asistencias.create');
+    Route::post('asistencias', [AsistenciaController::class, 'store'])->name('asistencias.store');
+    Route::get('asistencias/{asistencia}/edit', [AsistenciaController::class, 'edit'])->name('asistencias.edit');
+    Route::put('asistencias/{asistencia}', [AsistenciaController::class, 'update'])->name('asistencias.update');
+    Route::delete('asistencias/{asistencia}', [AsistenciaController::class, 'destroy'])->name('asistencias.destroy');
 });
+
 
 Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
   Route::resource('asistencias_docentes', AsistenciaDocenteController::class);
 });
 
+Route::prefix('admin')->name('admin.')->group(function () {
+  Route::resource('evaluaciones', EvaluacionController::class);
+});
 
+Route::prefix('admin')->name('admin.')->group(function () {
+  Route::resource('pagos', PagoController::class);
+});
 
+Route::prefix('admin')->name('admin.')->group(function () {
+  Route::resource('mensajes', MensajeController::class);
+});
 
+Route::prefix('admin')->name('admin.')->group(function () {
+  Route::resource('personas', PersonaController::class);
+});
 
+Route::prefix('admin')->name('admin.')->group(function () {
+  Route::resource('secciones', SeccionController::class);
+});
 
   //  Route::prefix('admin')->group(function () {
    // Route::get('RegistroCurso', [RegistroCursoController::class, 'index'])->name('admin.RegistroCurso.index');

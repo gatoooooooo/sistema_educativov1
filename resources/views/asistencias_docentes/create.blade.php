@@ -10,7 +10,7 @@
                     <h4 class="page-title pull-left">Asistencias de Docentes</h4>
                     <ul class="breadcrumbs pull-left">
                         <li><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
-                        <li><a href="{{ route('asistencias_docentes.index') }}">Listado de Asistencias</a></li>
+                        <li><a href="{{ route('admin.asistencias_docentes.index') }}">Listado de Asistencias</a></li>
                         <li><span>Registrar</span></li>
                     </ul>
                 </div>
@@ -27,10 +27,10 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="header-title">Registrar Nueva Asistencia de Docente</h4>
-                        <a href="{{ route('asistencias_docentes.index') }}" class="btn btn-secondary mb-3">Volver al Listado</a>
+                        <a href="{{ route('admin.asistencias_docentes.index') }}" class="btn btn-secondary mb-3">Volver al Listado</a>
                         @include('backend.layouts.partials.messages')
 
-                        <form action="{{ route('asistencias_docentes.store') }}" method="POST">
+                        <form action="{{ route('admin.asistencias_docentes.store') }}" method="POST">
                             @csrf
                             <div class="form-group">
                                 <label for="docente_id">Docente</label>

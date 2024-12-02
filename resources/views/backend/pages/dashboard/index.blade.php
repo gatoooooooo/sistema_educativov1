@@ -67,8 +67,30 @@ Dashboard Page - Admin Panel
                     </div>
                 </div>
             </div>
-
-           
+            <div class="col-md-6 mt-5 mb-3">
+                <div class="card">
+                    <div class="seo-fact sbg1">
+                        <a href="{{ route('admin.horarios.index') }}">
+                            <div class="p-4 d-flex justify-content-between align-items-center">
+                                <div class="seofct-icon"><i class="fa fa-calendar"></i>horarios</div>
+                                <h2>{{ $total_horario }}</h2>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mt-5 mb-3">
+                <div class="card">
+                    <div class="seo-fact sbg1">
+                        <a href="{{ route('admin.notas.index') }}">
+                            <div class="p-4 d-flex justify-content-between align-items-center">
+                                <div class="seofct-icon"><i class="fa fa-sticky-note"></i>notas</div>
+                                <h2>{{ $total_nota }}</h2>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
             <div class="col-md-6 mt-5 mb-3">
                 <div class="card">
                     <div class="seo-fact sbg1">
