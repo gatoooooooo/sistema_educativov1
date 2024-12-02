@@ -14,8 +14,8 @@ class AsistenciaDocente extends Model
     protected $fillable = ['docente_id', 'fecha', 'estado']; // Campos asignables masivamente
 
     // Relación: una asistencia pertenece a un docente
-    public function docente()
+    public function Docente()
     {
-        return $this->belongsTo(Docente::class, 'docente_id');
+        return $this->belongsTo(Curso::class);
     }
 }

@@ -14,7 +14,7 @@ return new class extends Migration
             $table->date('fecha');
             $table->enum('estado', ['presente', 'ausente', 'justificado']);
             $table->timestamps();
-
+            $table->foreignId('docente_id')->constrained('docentes')->onDelete('cascade');
             // Relación con la tabla docentes
             $table->foreign('docente_id')->references('id')->on('docentes')->onDelete('cascade');
         });

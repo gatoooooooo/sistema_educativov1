@@ -16,7 +16,7 @@ class NotaController extends Controller
         return view('notas.index', compact('notas')); // Pasamos las notas a la vista
     }
 
-    // Mostrar el formulario para crear una nueva nota
+    // Mostrar el formulario para asignar un estudiante y un curso
     public function create()
     {
         $estudiantes = Estudiante::all(); // Obtener todos los estudiantes
@@ -24,75 +24,62 @@ class NotaController extends Controller
         return view('notas.create', compact('estudiantes', 'cursos')); // Pasamos los estudiantes y cursos a la vista
     }
 
-    // Almacenar una nueva nota
     public function store(Request $request)
-    {
-        // Validar los datos del formulario
-        $request->validate([
-            'registro_estudiante_id' => 'required|exists:registro_estudiantes,id',
-            'curso_id' => 'required|exists:cursos,id',
-            'nota1' => 'required|numeric|min:0|max:20',
-            'nota2' => 'required|numeric|min:0|max:20',
-            'nota3' => 'required|numeric|min:0|max:20',
-            'fecha' => 'required|date',
-            'comentarios' => 'nullable|string|max:255', // Comentarios opcionales
-        ]);
+{
+    // Validar los datos del formulario
+    $request->validate([
+        'registro_estudiante_id' => 'required|exists:estudiantes,id', // Verifica que el estudiante existe
+        'curso_id' => 'required|exists:cursos,id', // Verifica que el curso existe
+    ]);
 
-        // Crear la nueva nota
-        Nota::create([
-            'registro_estudiante_id' => $request->registro_estudiante_id,
-            'curso_id' => $request->curso_id,
-            'nota1' => $request->nota1,
-            'nota2' => $request->nota2,
-            'nota3' => $request->nota3,
-            'fecha' => $request->fecha,
-            'comentarios' => $request->comentarios, // Los comentarios son opcionales
-        ]);
+    // Crear una nueva relación con las notas vacías
+    Nota::create([
+        'registro_estudiante_id' => $request->registro_estudiante_id, // Asegúrate de que este campo coincida
+        'curso_id' => $request->curso_id, // Asegúrate de que este campo coincida
+        'nota1' => null,
+        'nota2' => null,
+        'nota3' => null,
+        'fecha' => now(),
+        'comentarios' => null,
+    ]);
 
-        // Redirigir a la vista principal de notas con un mensaje de éxito
-        return redirect()->route('admin.notas.index')->with('success', 'Nota registrada correctamente.');
-    }
+    // Redirigir con un mensaje de éxito
+    return redirect()->route('admin.notas.index')->with('success', 'Estudiante y curso asignados correctamente.');
+}
 
-    // Mostrar el formulario para editar una nota existente
+    
+
+    // Mostrar el formulario para editar notas y comentarios
     public function edit($id)
     {
         // Buscar la nota por su id
         $nota = Nota::findOrFail($id);
-        // Obtener todos los estudiantes y cursos
-        $estudiantes = Estudiante::all(); // Cambiar RegistroEstudiante por Estudiante
-        $cursos = Curso::all();
-        return view('notas.edit', compact('nota', 'estudiantes', 'cursos')); // Pasamos la nota, estudiantes y cursos a la vista
+        return view('notas.edit', compact('nota')); // Pasamos la nota a la vista
     }
 
-    // Actualizar una nota
+    // Actualizar las notas y comentarios
     public function update(Request $request, $id)
     {
         // Validar los datos del formulario
         $request->validate([
-            'registro_estudiante_id' => 'required|exists:registro_estudiantes,id',
-            'curso_id' => 'required|exists:cursos,id',
-            'nota1' => 'required|numeric|min:0|max:20',
-            'nota2' => 'required|numeric|min:0|max:20',
-            'nota3' => 'required|numeric|min:0|max:20',
-            'fecha' => 'required|date',
+            'nota1' => 'required|in:AD,A,B,C', // Notas deben ser AD, A, B o C
+            'nota2' => 'required|in:AD,A,B,C',
+            'nota3' => 'required|in:AD,A,B,C',
             'comentarios' => 'nullable|string|max:255', // Comentarios opcionales
         ]);
 
         // Buscar la nota por su id
         $nota = Nota::findOrFail($id);
-        // Actualizar los datos de la nota
+        // Actualizar las notas y comentarios
         $nota->update([
-            'registro_estudiante_id' => $request->registro_estudiante_id,
-            'curso_id' => $request->curso_id,
             'nota1' => $request->nota1,
             'nota2' => $request->nota2,
             'nota3' => $request->nota3,
-            'fecha' => $request->fecha,
             'comentarios' => $request->comentarios,
         ]);
 
         // Redirigir con mensaje de éxito
-        return redirect()->route('admin.notas.index')->with('success', 'Nota actualizada correctamente.');
+        return redirect()->route('notas.index')->with('success', 'Notas actualizadas correctamente.');
     }
 
     // Eliminar una nota
@@ -104,6 +91,6 @@ class NotaController extends Controller
         $nota->delete();
 
         // Redirigir con mensaje de éxito
-        return redirect()->route('admin.notas.index')->with('success', 'Nota eliminada correctamente.');
+        return redirect()->route('notas.index')->with('success', 'Nota eliminada correctamente.');
     }
 }

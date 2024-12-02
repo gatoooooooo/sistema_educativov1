@@ -10,12 +10,13 @@ class CreatePromediosTable extends Migration
     {
         Schema::create('promedios', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('registro_estudiante_id')->constrained('registro_estudiantes');
-            $table->foreignId('curso_id')->constrained('cursos');
-            $table->decimal('promedio_final', 5, 2); // Promedio final
-            $table->date('fecha_calculo'); // Fecha de cálculo del promedio
-            $table->text('comentarios')->nullable(); // Comentarios opcionales
+            $table->unsignedBigInteger('estudiante_id');
+            $table->unsignedBigInteger('curso_id');
+            $table->float('promedio')->nullable();
             $table->timestamps();
+
+            $table->foreign('estudiante_id')->references('id')->on('registro_estudiantes')->onDelete('cascade');
+            $table->foreign('curso_id')->references('id')->on('cursos')->onDelete('cascade');
         });
     }
 

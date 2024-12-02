@@ -10,38 +10,41 @@
 
 @section('admin-content')
 <div class="container">
-    <h1>Promedios</h1>
+    <h1>Lista de Promedios</h1>
 
-    <table class="table mt-3">
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+
+    <!-- Botón para ir a la página de creación de promedios -->
+    <div class="mb-3">
+        <a href="{{ route('admin.promedios.create') }}" class="btn btn-primary">Calcular Nuevo Promedio</a>
+    </div>
+
+    <table class="table table-striped">
         <thead>
             <tr>
+                <th>#</th>
                 <th>Estudiante</th>
                 <th>Curso</th>
-                <th>Promedio Final</th>
-                <th>Fecha de Cálculo</th>
-                <th>Comentarios</th>
-                <th>Acciones</th>
+                <th>Promedio</th>
             </tr>
         </thead>
         <tbody>
-            @foreach($promedios as $promedio)
+            @forelse ($promedios as $promedio)
                 <tr>
+                    <td>{{ $loop->iteration }}</td>
                     <td>{{ $promedio->estudiante->nombre }} {{ $promedio->estudiante->apellido }}</td>
                     <td>{{ $promedio->curso->nombre }}</td>
-                    <td>{{ $promedio->promedio_final }}</td>
-                    <td>{{ $promedio->fecha_calculo }}</td>
-                    <td>{{ $promedio->comentarios }}</td>
-                    <td>
-                        <a href="{{ route('admin.promedios.generar', ['registroEstudianteId' => $promedio->registro_estudiante_id, 'cursoId' => $promedio->curso_id]) }}" class="btn btn-success">Generar Promedio</a>
-                        <!-- Agregar el botón para eliminar el promedio -->
-                        <form action="{{ route('admin.promedios.destroy', $promedio->id) }}" method="POST" style="display:inline-block;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Eliminar</button>
-                        </form>
-                    </td>
+                    <td>{{ number_format($promedio->promedio, 2) }}</td>
                 </tr>
-            @endforeach
+            @empty
+                <tr>
+                    <td colspan="4" class="text-center">No hay promedios registrados.</td>
+                </tr>
+            @endforelse
         </tbody>
     </table>
 </div>

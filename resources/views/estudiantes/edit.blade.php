@@ -32,34 +32,77 @@
                         <form action="{{ route('admin.estudiantes.update', $estudiante->id) }}" method="POST">
                             @csrf
                             @method('PUT')
+
                             <div class="form-group">
-                                <label for="nombre">Nombre</label>
-                                <input type="text" name="nombre" id="nombre" class="form-control" value="{{ $estudiante->nombre }}" required>
+                                <label for="nombre_completo">Nombre Completo</label>
+                                <input type="text" name="nombre_completo" id="nombre_completo" class="form-control" value="{{ old('nombre_completo', $estudiante->nombre_completo) }}" required>
                             </div>
-                            <div class="form-group">
-                                <label for="apellido">Apellido</label>
-                                <input type="text" name="apellido" id="apellido" class="form-control" value="{{ $estudiante->apellido }}" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="dni">DNI</label>
-                                <input type="text" name="dni" id="dni" class="form-control" value="{{ $estudiante->dni }}" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="fecha_nacimiento">Fecha de Nacimiento</label>
-                                <input type="date" name="fecha_nacimiento" id="fecha_nacimiento" class="form-control" value="{{ $estudiante->fecha_nacimiento }}">
-                            </div>
-                            <div class="form-group">
-                                <label for="correo">Correo</label>
-                                <input type="email" name="correo" id="correo" class="form-control" value="{{ $estudiante->correo }}" required>
-                            </div>
+
                             <div class="form-group">
                                 <label for="direccion">Dirección</label>
-                                <input type="text" name="direccion" id="direccion" class="form-control" value="{{ $estudiante->direccion }}">
+                                <input type="text" name="direccion" id="direccion" class="form-control" value="{{ old('direccion', $estudiante->direccion) }}">
                             </div>
+
                             <div class="form-group">
                                 <label for="telefono">Teléfono</label>
-                                <input type="text" name="telefono" id="telefono" class="form-control" value="{{ $estudiante->telefono }}">
+                                <input type="text" name="telefono" id="telefono" class="form-control" value="{{ old('telefono', $estudiante->telefono) }}">
                             </div>
+
+                            <div class="form-group">
+                                <label for="correo_electronico">Correo Electrónico</label>
+                                <input type="email" name="correo_electronico" id="correo_electronico" class="form-control" value="{{ old('correo_electronico', $estudiante->correo_electronico) }}" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="grado">Grado</label>
+                                <input type="text" name="grado" id="grado" class="form-control" value="{{ old('grado', $estudiante->grado) }}" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="seccion">Sección</label>
+                                <input type="text" name="seccion" id="seccion" class="form-control" value="{{ old('seccion', $estudiante->seccion) }}" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="fecha_ingreso">Fecha de Ingreso</label>
+                                <input type="date" name="fecha_ingreso" id="fecha_ingreso" class="form-control" value="{{ old('fecha_ingreso', $estudiante->fecha_ingreso) }}" required>
+                            </div>
+
+                            <!--<div class="form-group">
+                                <label for="promedio">Promedio</label>
+                                <input type="text" name="promedio" id="promedio" class="form-control" value="{{ old('promedio', $estudiante->promedio) }}">
+                            </div>-->
+
+                            <div class="form-group">
+                                <label for="nombre_padre">Nombre del Padre</label>
+                                <input type="text" name="nombre_padre" id="nombre_padre" class="form-control" value="{{ old('nombre_padre', $estudiante->nombre_padre) }}">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="nombre_madre">Nombre de la Madre</label>
+                                <input type="text" name="nombre_madre" id="nombre_madre" class="form-control" value="{{ old('nombre_madre', $estudiante->nombre_madre) }}">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="telefono_padre">Teléfono del Padre</label>
+                                <input type="text" name="telefono_padre" id="telefono_padre" class="form-control" value="{{ old('telefono_padre', $estudiante->telefono_padre) }}">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="telefono_madre">Teléfono de la Madre</label>
+                                <input type="text" name="telefono_madre" id="telefono_madre" class="form-control" value="{{ old('telefono_madre', $estudiante->telefono_madre) }}">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="documento_tipo">Tipo de Documento</label>
+                                <input type="text" name="documento_tipo" id="documento_tipo" class="form-control" value="{{ old('documento_tipo', $estudiante->documento_tipo) }}" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="documento_numero">Número de Documento</label>
+                                <input type="text" name="documento_numero" id="documento_numero" class="form-control" value="{{ old('documento_numero', $estudiante->documento_numero) }}" required>
+                            </div>
+
                             <button type="submit" class="btn btn-primary mt-3">Actualizar</button>
                         </form>
                     </div>

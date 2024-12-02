@@ -1,19 +1,15 @@
 @extends('backend.layouts.master')
 
-@section('title', 'Lista de Estudiantes')
-
-@section('styles')
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.18/css/dataTables.bootstrap4.min.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap.min.css">
-@endsection
+@section('title', 'Lista de Notas')
 
 @section('admin-content')
 <div class="container">
     <h1>Notas</h1>
-    <a href="{{ route('admin.notas.create') }}" class="btn btn-primary">Agregar Nota</a>
+    <!-- Botón para agregar estudiante y curso -->
+    <a href="{{ route('admin.notas.create') }}" class="btn btn-primary mb-3">Agregar estudiante y curso</a>
 
-    <table class="table mt-3">
+    <!-- Tabla de notas -->
+    <table class="table table-striped">
         <thead>
             <tr>
                 <th>Estudiante</th>
@@ -27,41 +23,47 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($notas as $nota)
-                <tr>
-                    <!-- Acceder correctamente a la relación 'registroEstudiante' -->
-                    <td>{{ $nota->estudiante->nombre }} {{ $nota->estudiante->apellido }}</td>
-                    <td>{{ $nota->curso->nombre }}</td>
-                    <td>{{ $nota->nota1 }}</td>
-                    <td>{{ $nota->nota2 }}</td>
-                    <td>{{ $nota->nota3 }}</td>
-                    <td>{{ $nota->fecha }}</td>
-                    <td>{{ $nota->comentarios }}</td>
+            @foreach ($notas as $nota)
+            <tr>
+                <td>{{ $nota->estudiante->nombre }} {{ $nota->estudiante->apellido }}</td>
+                <td>{{ $nota->curso->nombre }}</td>
+                    @csrf
+                    @method('PUT')
                     <td>
-                        <a href="{{ route('admin.notas.edit', $nota->id) }}" class="btn btn-warning">Editar</a>
-                        <form action="{{ route('admin.notas.destroy', $nota->id) }}" method="POST" style="display:inline-block;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Eliminar</button>
-                        </form>
+                        <select name="nota1" class="form-control">
+                            <option value="AD" {{ $nota->nota1 == 'AD' ? 'selected' : '' }}>AD</option>
+                            <option value="A" {{ $nota->nota1 == 'A' ? 'selected' : '' }}>A</option>
+                            <option value="B" {{ $nota->nota1 == 'B' ? 'selected' : '' }}>B</option>
+                            <option value="C" {{ $nota->nota1 == 'C' ? 'selected' : '' }}>C</option>
+                        </select>
                     </td>
-                </tr>
+                    <td>
+                        <select name="nota2" class="form-control">
+                            <option value="AD" {{ $nota->nota2 == 'AD' ? 'selected' : '' }}>AD</option>
+                            <option value="A" {{ $nota->nota2 == 'A' ? 'selected' : '' }}>A</option>
+                            <option value="B" {{ $nota->nota2 == 'B' ? 'selected' : '' }}>B</option>
+                            <option value="C" {{ $nota->nota2 == 'C' ? 'selected' : '' }}>C</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select name="nota3" class="form-control">
+                            <option value="AD" {{ $nota->nota3 == 'AD' ? 'selected' : '' }}>AD</option>
+                            <option value="A" {{ $nota->nota3 == 'A' ? 'selected' : '' }}>A</option>
+                            <option value="B" {{ $nota->nota3 == 'B' ? 'selected' : '' }}>B</option>
+                            <option value="C" {{ $nota->nota3 == 'C' ? 'selected' : '' }}>C</option>
+                        </select>
+                    </td>
+                    <td>{{ $nota->fecha }}</td>
+                    <td>
+                        <input type="text" name="comentarios" value="{{ $nota->comentarios }}" class="form-control">
+                    </td>
+                    <td>
+                        <button type="submit" class="btn btn-success btn-sm">Guardar</button>
+                    </td>
+                </form>
+            </tr>
             @endforeach
         </tbody>
     </table>
 </div>
-@endsection
-
-@section('scripts')
-    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
-    <script src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>
-    <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $('#dataTable').DataTable({
-                responsive: true,
-                autoWidth: false
-            });
-        });
-    </script>
 @endsection
