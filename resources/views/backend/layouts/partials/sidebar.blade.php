@@ -34,7 +34,7 @@
                                 <li class="{{ Route::is('admin.estudiantes.index')  || Route::is('admin.estudiantes.edit') ? 'active' : '' }}"><a href="{{ route('admin.estudiantes.index') }}">estudiantes</a></li>
                             @endif
                             @if ($usr->can('role.view'))
-                                <li class="{{ Route::is('admin.asistencias.index')  || Route::is('admin.asistencias.edit') ? 'active' : '' }}"><a href="{{ route('admin.asistencias.index') }}">asistencias estudiante</a></li>
+                                <li class="{{ Route::is('admin.asistencia.index')  || Route::is('admin.asistencias.edit') ? 'active' : '' }}"><a href="{{ route('admin.asistencias.index') }}">asistencias estudiante</a></li>
                             @endif
                         </ul>
                     </li>

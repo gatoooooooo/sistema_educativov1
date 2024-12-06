@@ -37,45 +37,48 @@
                     <div class="card-body">
                         <h4 class="header-title float-left">Lista de Docentes</h4>
                         <p class="float-right mb-2">
-                            <a class="btn btn-primary text-white" href="{{ route('admin.docentes.create') }}">Crear Nuevo Docente</a>
+                        <a class="btn btn-primary text-white" href="{{ route('admin.docentes.create') }}">Crear Nuevo Docente</a>
                         </p>
                         <div class="clearfix"></div>
                         <div class="data-tables">
                             @include('backend.layouts.partials.messages')
                             <table id="dataTable" class="text-center">
                                 <thead class="bg-light text-capitalize">
-                                <tr>
-                                    <th width="5%">Sl</th>
-                                    <th width="15%">Nombre Completo</th>
-                                    <th width="15%">Correo Electrónico</th>
-                                    <th width="10%">Teléfono</th>
-                                    <th width="15%">Materia</th>
-                                    <th width="15%">Estado Contrato</th>
-                                    <th width="10%">Acción</th>
-                                </tr>
+                                    <tr>
+                                        <th width="5%">Sl</th>
+                                        <th width="15%">Nombre</th>
+                                        <th width="15%">Apellido</th>
+                                        <th width="20%">Correo Electrónico</th>
+                                        <th width="15%">Teléfono</th>
+                                        <th width="10%">DNI</th>
+                                        <th width="10%">Acción</th>
+                                    </tr>
                                 </thead>
                                 <tbody>
-                                @foreach ($docentes as $docente)
-                                    <tr>
-                                        <td>{{ $loop->index + 1 }}</td>
-                                        <td>{{ $docente->nombre_completo }}</td>
-                                        <td>{{ $docente->correo_electronico }}</td>
-                                        <td>{{ $docente->telefono }}</td>
-                                        <td>{{ $docente->materia }}</td>
-                                        <td>{{ $docente->estado_contrato }}</td>
-                                        <td>
+                                    @foreach ($docentes as $docente)
+                                        <tr>
+                                            <td>{{ $loop->index + 1 }}</td>
+                                            <td>{{ $docente->nombre }}</td>
+                                            <td>{{ $docente->apellido }}</td>
+                                            <td>{{ $docente->correo_electronico }}</td>
+                                            <td>{{ $docente->telefono }}</td>
+                                            <td>{{ $docente->dni }}</td>
+                                            <td>
                                             <a class="btn btn-success text-white" href="{{ route('admin.docentes.edit', $docente->id) }}">Editar</a>
+
                                             <a class="btn btn-danger text-white" href="{{ route('admin.docentes.destroy', $docente->id) }}"
-                                               onclick="event.preventDefault(); document.getElementById('delete-form-{{ $docente->id }}').submit();">
-                                                Eliminar
+                                            onclick="event.preventDefault(); document.getElementById('delete-form-{{ $docente->id }}').submit();">
+                                            Eliminar
                                             </a>
+
                                             <form id="delete-form-{{ $docente->id }}" action="{{ route('admin.docentes.destroy', $docente->id) }}" method="POST" style="display: none;">
-                                                @method('DELETE')
-                                                @csrf
+                                            @method('DELETE')
+                                            @csrf
                                             </form>
-                                        </td>
-                                    </tr>
-                                @endforeach
+
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -93,7 +96,7 @@
     <script src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap.min.js"></script>
-
+    
     <script>
         if ($('#dataTable').length) {
             $('#dataTable').DataTable({

@@ -5,38 +5,58 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+
 class Estudiante extends Model
 {
     use HasFactory;
 
-    protected $table = 'registro_estudiantes';  // Nombre de la tabla
+    protected $table = 'registro_estudiantes';
 
     protected $fillable = [
-        'nombre_completo',
+        'nombre',
+        'apellido',
         'direccion',
         'telefono',
         'correo_electronico',
-        'grado',
-        'seccion',
+        'grado_id',
         'fecha_ingreso',
-        'promedio',
         'nombre_padre',
         'nombre_madre',
         'telefono_padre',
         'telefono_madre',
         'documento_tipo',
         'documento_numero',
+        'genero',  // Agregado
+        'fecha_nacimiento',  // Agregado
     ];
 
-    // Relación con otras tablas (si es necesario)
-    // Por ejemplo, si tienes una relación con otra tabla llamada "asistencias"
-    // public function asistencias() {
-    //     return $this->hasMany(Asistencia::class);
-    // }
+    // Relación con el modelo Grado
+    public function grado()
+    {
+        return $this->belongsTo(Grado::class, 'grado_id');
+    }
 
+    // Relación con el modelo Persona
+    public function persona()
+    {
+        return $this->belongsTo(Persona::class, 'persona_id');
+    }
 
-public function notas()
+    // Relación con el modelo Nota
+    public function notas()
     {
         return $this->hasMany(Nota::class, 'registro_estudiante_id');
+    }
+
+    // Relación con el modelo Sección (relación muchos a muchos)
+    public function secciones()
+    {
+        return $this->belongsToMany(Seccion::class, 'seccion_estudiante');
+    }
+
+    // Relación con el modelo Asistencia
+    public function asistencias()
+    {
+        return $this->hasMany(Asistencia::class, 'estudiante_id');
     }
 }

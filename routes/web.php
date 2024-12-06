@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GradoController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -83,6 +84,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::delete('estudiantes/{estudiante}', [EstudianteController::class, 'destroy'])->name('estudiantes.destroy');
     Route::get('/asistencias/marcar/{id}', [AsistenciaController::class, 'marcarAsistencia'])->name('asistencias.marcar');
 
+    Route::get('estudiantes/{id}/ver', [EstudianteController::class, 'show'])->name('admin.estudiantes.show');
+
 });
 
 Route::prefix('admin')->name('admin.')->group(function () {
@@ -118,7 +121,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
   Route::delete('horarios/{horario}', [HorariosController::class, 'destroy'])->name('horarios.destroy');
 });
 
-
 Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
 
     Route::get('asistencias', [AsistenciaController::class, 'index'])->name('asistencias.index');
@@ -128,7 +130,6 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::put('asistencias/{asistencia}', [AsistenciaController::class, 'update'])->name('asistencias.update');
     Route::delete('asistencias/{asistencia}', [AsistenciaController::class, 'destroy'])->name('asistencias.destroy');
 });
-
 
 Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
   Route::resource('asistencias_docentes', AsistenciaDocenteController::class);
@@ -150,10 +151,25 @@ Route::prefix('admin')->name('admin.')->group(function () {
   Route::resource('personas', PersonaController::class);
 });
 
-Route::prefix('admin')->name('admin.')->group(function () {
-  Route::resource('secciones', SeccionController::class);
+Route::prefix('admin')->middleware('auth')->group(function () {
+    Route::get('secciones', [SeccionController::class, 'index'])->name('admin.secciones.index');
+    Route::get('secciones/create', [SeccionController::class, 'create'])->name('admin.secciones.create');
+    Route::post('secciones', [SeccionController::class, 'store'])->name('admin.secciones.store');
+    Route::get('secciones/{seccion}/edit', [SeccionController::class, 'edit'])->name('admin.secciones.edit');
+    Route::put('secciones/{seccion}', [SeccionController::class, 'update'])->name('admin.secciones.update');
+    Route::delete('secciones/{seccion}', [SeccionController::class, 'destroy'])->name('admin.secciones.destroy');
+// Ruta para agregar un estudiante a una sección
+    Route::post('secciones/{id}/agregar-estudiante', [SeccionController::class, 'agregarEstudiante'])->name('admin.secciones.agregarEstudiante');
+
+// Ruta para eliminar un estudiante de una sección
+    Route::delete('secciones/{id}/eliminar-estudiante/{estudiante_id}', [SeccionController::class, 'eliminarEstudiante'])->name('admin.secciones.eliminarEstudiante');
+
 });
 
+Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
+    // Rutas para el manejo de grados
+    Route::resource('grados', GradoController::class);
+});
   //  Route::prefix('admin')->group(function () {
    // Route::get('RegistroCurso', [RegistroCursoController::class, 'index'])->name('admin.RegistroCurso.index');
 //});

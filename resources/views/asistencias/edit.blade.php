@@ -55,7 +55,7 @@
                 <select name="estado" id="estado" class="form-control" required>
                     <option value="presente" {{ $asistencia->estado == 'presente' ? 'selected' : '' }}>Presente</option>
                     <option value="ausente" {{ $asistencia->estado == 'ausente' ? 'selected' : '' }}>Ausente</option>
-                    <option value="justificado" {{ $asistencia->estado == 'justificado' ? 'selected' : '' }}>Justificado</option>
+                    <option value="justificado" {{ $asistencia->estado == 'justificado' ? 'selected' : '' }}>Justificado</option> <!-- Añadido opción Justificado -->
                 </select>
             </div>
 
