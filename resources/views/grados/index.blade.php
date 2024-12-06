@@ -1,7 +1,7 @@
 @extends('backend.layouts.master')
 
 @section('title')
-    Estudiantes - Panel de Administración
+    Grados - Panel de Administración
 @endsection
 
 @section('styles')
@@ -30,10 +30,10 @@
         <div class="row align-items-center">
             <div class="col-sm-6">
                 <div class="breadcrumbs-area clearfix">
-                    <h4 class="page-title pull-left">Estudiantes</h4>
+                    <h4 class="page-title pull-left">Grados</h4>
                     <ul class="breadcrumbs pull-left">
                         <li><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
-                        <li><span>Estudiantes</span></li>
+                        <li><span>Grados</span></li>
                     </ul>
                 </div>
             </div>
@@ -49,7 +49,7 @@
                 <div class="card">
                     <div class="card-body">
                         <p class="float-right mb-2">
-                            <a class="btn btn-primary text-white" href="{{ route('admin.estudiantes.create') }}">Crear nuevo estudiante</a>
+                            <a class="btn btn-primary text-white" href="{{ route('admin.grados.create') }}">Crear nuevo grado</a>
                         </p>
 
                         @include('backend.layouts.partials.messages')
@@ -59,34 +59,23 @@
                                 <thead class="bg-primary text-white border-bottom">
                                 <tr>
                                     <th class="icon-column">Nombre</th>
-                                    <th class="icon-column">Apellido</th>
-                                    <th class="icon-column">Número de Documento</th>
-                                    <th class="icon-column">Grado</th>
-                                    <th class="icon-column">Fecha de Ingreso</th>
+                                    <th class="icon-column">Descripción</th>
                                     <th class="icon-column">Acciones</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($estudiantes as $estudiante)
+                                @foreach($grados as $grado)
                                     <tr>
-                                        <td>{{ $estudiante->nombre }}</td>
-                                        <td>{{ $estudiante->apellido }}</td>
+                                        <td>{{ $grado->nombre }}</td>
+                                        <td>{{ $grado->descripcion }}</td>
                                         <td>
-                                            {{ $estudiante->documento_tipo }} - {{ $estudiante->documento_numero }}
-                                        </td>
-                                        <td>{{ $estudiante->grado->nombre }}</td>
-                                        <td>{{ $estudiante->fecha_ingreso }}</td>
-                                        <td>
-                                            <a href="{{ route('admin.estudiantes.edit', $estudiante->id) }}" class="btn btn-primary btn-sm">
+                                            <a href="{{ route('admin.grados.edit', $grado->id) }}" class="btn btn-primary btn-sm">
                                                 <i class="fa fa-edit"></i> Editar
                                             </a>
-                                            <a href="{{ route('admin.estudiantes.show', $estudiante->id) }}" class="btn btn-info btn-sm">
-                                                <i class="fa fa-eye"></i> Ver
-                                            </a>
-                                            <form action="{{ route('admin.estudiantes.destroy', $estudiante->id) }}" method="POST" style="display: inline-block;">
+                                            <form action="{{ route('admin.grados.destroy', $grado->id) }}" method="POST" style="display: inline-block;">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de eliminar este estudiante?')">
+                                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de eliminar este grado?')">
                                                     <i class="fa fa-trash"></i> Eliminar
                                                 </button>
                                             </form>
