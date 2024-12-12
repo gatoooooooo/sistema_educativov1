@@ -1,17 +1,47 @@
 @extends('backend.layouts.master')
 
-@section('title', 'Editar Estudiante')
+@section('title')
+    Editar Estudiante - Panel de Administración
+@endsection
+
+@section('styles')
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.18/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap.min.css">
+<<<<<<< HEAD
+    <style>
+        .form-section {
+            border: 1px solid #e2e2e2;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .form-section h5 {
+            margin-bottom: 15px;
+            color: #5c6bc0;
+            font-weight: bold;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+        .btn-group {
+            margin-top: 20px;
+        }
+    </style>
+=======
+>>>>>>> d3cad1fdcba824512c34c5e8bc6fa2cf3e435f4f
+@endsection
 
 @section('admin-content')
     <div class="page-title-area">
         <div class="row align-items-center">
             <div class="col-sm-6">
                 <div class="breadcrumbs-area clearfix">
-                    <h4 class="page-title pull-left">Estudiantes</h4>
+                    <h4 class="page-title pull-left">Editar Estudiante</h4>
                     <ul class="breadcrumbs pull-left">
                         <li><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
                         <li><a href="{{ route('admin.estudiantes.index') }}">Estudiantes</a></li>
-                        <li><span>Editar</span></li>
+                        <li><span>Editar Estudiante</span></li>
                     </ul>
                 </div>
             </div>
@@ -23,91 +53,189 @@
 
     <div class="main-content-inner">
         <div class="row">
-            <div class="col-lg-12 mt-5">
+            <div class="col-12 mt-5">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="header-title">Editar Estudiante</h4>
+<<<<<<< HEAD
+                        <h4 class="header-title text-center text-primary">Formulario para Editar Estudiante</h4>
+=======
+                        <h4 class="header-title">Formulario para Editar Estudiante</h4>
+>>>>>>> d3cad1fdcba824512c34c5e8bc6fa2cf3e435f4f
+
                         @include('backend.layouts.partials.messages')
 
                         <form action="{{ route('admin.estudiantes.update', $estudiante->id) }}" method="POST">
                             @csrf
                             @method('PUT')
 
+<<<<<<< HEAD
+                            {{-- Información Personal --}}
+                            <div class="form-section">
+                                <h5>Información Personal</h5>
+                                <div class="form-group">
+                                    <label for="nombre">Nombre</label>
+                                    <input type="text" class="form-control" id="nombre" name="nombre" value="{{ old('nombre', $estudiante->nombre) }}" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="apellido">Apellido</label>
+                                    <input type="text" class="form-control" id="apellido" name="apellido" value="{{ old('apellido', $estudiante->apellido) }}" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="genero">Género</label>
+                                    <select class="form-control" id="genero" name="genero" required>
+                                        <option value="masculino" {{ old('genero', $estudiante->genero) == 'masculino' ? 'selected' : '' }}>Masculino</option>
+                                        <option value="femenino" {{ old('genero', $estudiante->genero) == 'femenino' ? 'selected' : '' }}>Femenino</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="fecha_nacimiento">Fecha de Nacimiento</label>
+                                    <input type="date" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento" value="{{ old('fecha_nacimiento', $estudiante->fecha_nacimiento) }}" required>
+                                </div>
+                            </div>
+
+                            {{-- Información de Contacto --}}
+                            <div class="form-section">
+                                <h5>Información de Contacto</h5>
+                                <div class="form-group">
+                                    <label for="direccion">Dirección</label>
+                                    <input type="text" class="form-control" id="direccion" name="direccion" value="{{ old('direccion', $estudiante->direccion) }}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="telefono">Teléfono</label>
+                                    <input type="text" class="form-control" id="telefono" name="telefono" value="{{ old('telefono', $estudiante->telefono) }}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="correo_electronico">Correo Electrónico</label>
+                                    <input type="email" class="form-control" id="correo_electronico" name="correo_electronico" value="{{ old('correo_electronico', $estudiante->correo_electronico) }}">
+                                </div>
+                            </div>
+
+                            {{-- Documentos --}}
+                            <div class="form-section">
+                                <h5>Documentos</h5>
+                                <div class="form-group">
+                                    <label for="documento_tipo">Tipo de Documento</label>
+                                    <select class="form-control" id="documento_tipo" name="documento_tipo" required>
+                                        <option value="DNI" {{ old('documento_tipo', $estudiante->documento_tipo) == 'DNI' ? 'selected' : '' }}>DNI</option>
+                                        <option value="Carnet de extranjería" {{ old('documento_tipo', $estudiante->documento_tipo) == 'Carnet de extranjería' ? 'selected' : '' }}>Carnet de extranjería</option>
+                                        <option value="Pasaporte" {{ old('documento_tipo', $estudiante->documento_tipo) == 'Pasaporte' ? 'selected' : '' }}>Pasaporte</option>
+                                        <option value="Otro" {{ old('documento_tipo', $estudiante->documento_tipo) == 'Otro' ? 'selected' : '' }}>Otro</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="documento_numero">Número de Documento</label>
+                                    <input type="text" class="form-control" id="documento_numero" name="documento_numero" value="{{ old('documento_numero', $estudiante->documento_numero) }}" required>
+                                </div>
+                            </div>
+
+                            {{-- Información Académica --}}
+                            <div class="form-section">
+                                <h5>Información Académica</h5>
+                                <div class="form-group">
+                                    <label for="grado_id">Grado</label>
+                                    <select class="form-control" id="grado_id" name="grado_id" required>
+                                        @foreach($grados as $grado)
+                                            <option value="{{ $grado->id }}" {{ $grado->id == $estudiante->grado_id ? 'selected' : '' }}>{{ $grado->nombre }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="fecha_ingreso">Fecha de Ingreso</label>
+                                    <input type="date" class="form-control" id="fecha_ingreso" name="fecha_ingreso" value="{{ old('fecha_ingreso', $estudiante->fecha_ingreso) }}" required>
+                                </div>
+                            </div>
+
+                            {{-- Botones --}}
+                            <div class="btn-group">
+                                <button type="submit" class="btn btn-primary">Actualizar Estudiante</button>
+                                <a href="{{ route('admin.estudiantes.index') }}" class="btn btn-secondary">Cancelar</a>
+                            </div>
+
+=======
                             <div class="form-group">
-                                <label for="nombre_completo">Nombre Completo</label>
-                                <input type="text" name="nombre_completo" id="nombre_completo" class="form-control" value="{{ old('nombre_completo', $estudiante->nombre_completo) }}" required>
+                                <label for="nombre">Nombre</label>
+                                <input type="text" class="form-control" id="nombre" name="nombre" value="{{ old('nombre', $estudiante->nombre) }}" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="apellido">Apellido</label>
+                                <input type="text" class="form-control" id="apellido" name="apellido" value="{{ old('apellido', $estudiante->apellido) }}" required>
                             </div>
 
                             <div class="form-group">
                                 <label for="direccion">Dirección</label>
-                                <input type="text" name="direccion" id="direccion" class="form-control" value="{{ old('direccion', $estudiante->direccion) }}">
+                                <input type="text" class="form-control" id="direccion" name="direccion" value="{{ old('direccion', $estudiante->direccion) }}">
                             </div>
 
                             <div class="form-group">
                                 <label for="telefono">Teléfono</label>
-                                <input type="text" name="telefono" id="telefono" class="form-control" value="{{ old('telefono', $estudiante->telefono) }}">
+                                <input type="text" class="form-control" id="telefono" name="telefono" value="{{ old('telefono', $estudiante->telefono) }}">
                             </div>
 
                             <div class="form-group">
                                 <label for="correo_electronico">Correo Electrónico</label>
-                                <input type="email" name="correo_electronico" id="correo_electronico" class="form-control" value="{{ old('correo_electronico', $estudiante->correo_electronico) }}" required>
+                                <input type="email" class="form-control" id="correo_electronico" name="correo_electronico" value="{{ old('correo_electronico', $estudiante->correo_electronico) }}">
                             </div>
 
                             <div class="form-group">
-                                <label for="grado">Grado</label>
-                                <input type="text" name="grado" id="grado" class="form-control" value="{{ old('grado', $estudiante->grado) }}" required>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="seccion">Sección</label>
-                                <input type="text" name="seccion" id="seccion" class="form-control" value="{{ old('seccion', $estudiante->seccion) }}" required>
+                                <label for="grado_id">Grado</label>
+                                <select class="form-control" id="grado_id" name="grado_id" required>
+                                    @foreach($grados as $grado)
+                                        <option value="{{ $grado->id }}" {{ $grado->id == $estudiante->grado_id ? 'selected' : '' }}>{{ $grado->nombre }}</option>
+                                    @endforeach
+                                </select>
                             </div>
 
                             <div class="form-group">
                                 <label for="fecha_ingreso">Fecha de Ingreso</label>
-                                <input type="date" name="fecha_ingreso" id="fecha_ingreso" class="form-control" value="{{ old('fecha_ingreso', $estudiante->fecha_ingreso) }}" required>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="promedio">Promedio</label>
-                                <input type="text" name="promedio" id="promedio" class="form-control" value="{{ old('promedio', $estudiante->promedio) }}">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="nombre_padre">Nombre del Padre</label>
-                                <input type="text" name="nombre_padre" id="nombre_padre" class="form-control" value="{{ old('nombre_padre', $estudiante->nombre_padre) }}">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="nombre_madre">Nombre de la Madre</label>
-                                <input type="text" name="nombre_madre" id="nombre_madre" class="form-control" value="{{ old('nombre_madre', $estudiante->nombre_madre) }}">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="telefono_padre">Teléfono del Padre</label>
-                                <input type="text" name="telefono_padre" id="telefono_padre" class="form-control" value="{{ old('telefono_padre', $estudiante->telefono_padre) }}">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="telefono_madre">Teléfono de la Madre</label>
-                                <input type="text" name="telefono_madre" id="telefono_madre" class="form-control" value="{{ old('telefono_madre', $estudiante->telefono_madre) }}">
+                                <input type="date" class="form-control" id="fecha_ingreso" name="fecha_ingreso" value="{{ old('fecha_ingreso', $estudiante->fecha_ingreso) }}" required>
                             </div>
 
                             <div class="form-group">
                                 <label for="documento_tipo">Tipo de Documento</label>
-                                <input type="text" name="documento_tipo" id="documento_tipo" class="form-control" value="{{ old('documento_tipo', $estudiante->documento_tipo) }}" required>
+                                <select class="form-control" id="documento_tipo" name="documento_tipo" required>
+                                    <option value="DNI" {{ old('documento_tipo', $estudiante->documento_tipo) == 'DNI' ? 'selected' : '' }}>DNI</option>
+                                    <option value="Carnet de extranjería" {{ old('documento_tipo', $estudiante->documento_tipo) == 'Carnet de extranjería' ? 'selected' : '' }}>Carnet de extranjería</option>
+                                    <option value="Pasaporte" {{ old('documento_tipo', $estudiante->documento_tipo) == 'Pasaporte' ? 'selected' : '' }}>Pasaporte</option>
+                                    <option value="Otro" {{ old('documento_tipo', $estudiante->documento_tipo) == 'Otro' ? 'selected' : '' }}>Otro</option>
+                                </select>
                             </div>
 
                             <div class="form-group">
                                 <label for="documento_numero">Número de Documento</label>
-                                <input type="text" name="documento_numero" id="documento_numero" class="form-control" value="{{ old('documento_numero', $estudiante->documento_numero) }}" required>
+                                <input type="text" class="form-control" id="documento_numero" name="documento_numero" value="{{ old('documento_numero', $estudiante->documento_numero) }}" required>
                             </div>
 
-                            <button type="submit" class="btn btn-primary mt-3">Actualizar</button>
+                            <div class="form-group">
+                                <label for="genero">Género</label>
+                                <select class="form-control" id="genero" name="genero" required>
+                                    <option value="masculino" {{ old('genero', $estudiante->genero) == 'masculino' ? 'selected' : '' }}>Masculino</option>
+                                    <option value="femenino" {{ old('genero', $estudiante->genero) == 'femenino' ? 'selected' : '' }}>Femenino</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="fecha_nacimiento">Fecha de Nacimiento</label>
+                                <input type="date" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento" value="{{ old('fecha_nacimiento', $estudiante->fecha_nacimiento) }}" required>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Actualizar Estudiante</button>
+                            <a href="{{ route('admin.estudiantes.index') }}" class="btn btn-secondary">Cancelar</a>
+>>>>>>> d3cad1fdcba824512c34c5e8bc6fa2cf3e435f4f
                         </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+<<<<<<< HEAD
+=======
+
+>>>>>>> d3cad1fdcba824512c34c5e8bc6fa2cf3e435f4f
+@endsection
+
+@section('scripts')
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+    <script src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
 @endsection

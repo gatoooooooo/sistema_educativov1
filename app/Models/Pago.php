@@ -15,7 +15,11 @@ class Pago extends Model
         'registro_estudiante_id',
         'monto',
         'fecha_pago',
+<<<<<<< HEAD
+        'Tipo de pago ',
+=======
         'estado',
+>>>>>>> d3cad1fdcba824512c34c5e8bc6fa2cf3e435f4f
         'metodo_pago',
         'referencia',
         'fecha_registro',

@@ -5,9 +5,14 @@
 <div class="sidebar-menu">
     <div class="sidebar-header">
         <div class="logo">
+<<<<<<< HEAD
         <img src="{{ asset('backend/assets/images/img/logo.png') }}" alt="Logo" style="width: 80px; height: 80px;">
             <a href="{{ route('admin.dashboard') }}">
                 <h3 class="text-white">Sistema Educativo</h3>
+=======
+            <a href="{{ route('admin.dashboard') }}">
+                <h2 class="text-white">Admin</h2>
+>>>>>>> d3cad1fdcba824512c34c5e8bc6fa2cf3e435f4f
             </a>
         </div>
     </div>
@@ -27,7 +32,11 @@
                     <!-- Gestión de Estudiantes -->
                     @if ($usr->can('estudiantes.create') || $usr->can('role.view') ||  $usr->can('role.edit') ||  $usr->can('role.delete'))
                     <li>
+<<<<<<< HEAD
                         <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-users"></i><span>
+=======
+                        <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-tasks"></i><span>
+>>>>>>> d3cad1fdcba824512c34c5e8bc6fa2cf3e435f4f
                         Gestión de Estudiantes
                         </span></a>
                         <ul class="collapse {{ Route::is('admin.estudiantes.create') || Route::is('admin.estudiantes.index') || Route::is('admin.estudiantes.edit') || Route::is('admin.estudiantes.show') ? 'in' : '' }}">
@@ -35,7 +44,11 @@
                                 <li class="{{ Route::is('admin.estudiantes.index')  || Route::is('admin.estudiantes.edit') ? 'active' : '' }}"><a href="{{ route('admin.estudiantes.index') }}">estudiantes</a></li>
                             @endif
                             @if ($usr->can('role.view'))
+<<<<<<< HEAD
                                 <li class="{{ Route::is('admin.asistencias.index')  || Route::is('admin.asistencias.edit') ? 'active' : '' }}"><a href="{{ route('admin.asistencias.index') }}">asistencias estudiante</a></li>
+=======
+                                <li class="{{ Route::is('admin.asistencia.index')  || Route::is('admin.asistencias.edit') ? 'active' : '' }}"><a href="{{ route('admin.asistencias.index') }}">asistencias estudiante</a></li>
+>>>>>>> d3cad1fdcba824512c34c5e8bc6fa2cf3e435f4f
                             @endif
                         </ul>
                     </li>
@@ -44,7 +57,11 @@
                     <!-- Gestión Docentes -->
                     @if ($usr->can('estudiantes.create') || $usr->can('role.view') ||  $usr->can('role.edit') ||  $usr->can('role.delete'))
                     <li>
+<<<<<<< HEAD
                         <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-users"></i><span>
+=======
+                        <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-tasks"></i><span>
+>>>>>>> d3cad1fdcba824512c34c5e8bc6fa2cf3e435f4f
                         Gestión de docentes
                         </span></a>
                         <ul class="collapse {{ Route::is('admin.docentes.create') || Route::is('admin.docentes.index') || Route::is('admin.docentes.edit') || Route::is('admin.docentes.show') ? 'in' : '' }}">
@@ -62,7 +79,11 @@
                     <!-- Gestión Académica -->
                     @if ($usr->can('notas.create') || $usr->can('role.view') ||  $usr->can('role.edit') ||  $usr->can('role.delete'))
                     <li>
+<<<<<<< HEAD
                         <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-graduation-cap"></i><span>
+=======
+                        <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-tasks"></i><span>
+>>>>>>> d3cad1fdcba824512c34c5e8bc6fa2cf3e435f4f
                         Gestión Académica
                         </span></a>
                         <ul class="collapse {{ Route::is('admin.notas.create') || Route::is('admin.notas.index') || Route::is('admin.notas.edit') || Route::is('admin.notas.show') ? 'in' : '' }}">
@@ -82,6 +103,12 @@
                                 <li class="{{ Route::is('admin.evaluaciones.index')  || Route::is('admin.evaluaciones.edit') ? 'active' : '' }}"><a href="{{ route('admin.evaluaciones.index') }}">evaluaciones</a></li>
                             @endif
                             @if ($usr->can('role.view'))
+<<<<<<< HEAD
+                                <li class="{{ Route::is('admin.grados.index')  || Route::is('admin.grados.edit') ? 'active' : '' }}"><a href="{{ route('admin.grados.index') }}">Grados</a></li>
+                            @endif
+                            @if ($usr->can('role.view'))
+=======
+>>>>>>> d3cad1fdcba824512c34c5e8bc6fa2cf3e435f4f
                                 <li class="{{ Route::is('admin.secciones.index')  || Route::is('admin.secciones.edit') ? 'active' : '' }}"><a href="{{ route('admin.secciones.index') }}">secciones</a></li>
                             @endif
                         </ul>
@@ -98,9 +125,12 @@
                         @if ($usr->can('role.view'))
                                 <li class="{{ Route::is('admin.pagos.index')  || Route::is('admin.pagos.edit') ? 'active' : '' }}"><a href="{{ route('admin.pagos.index') }}">pagos</a></li>
                             @endif
+<<<<<<< HEAD
                             @if ($usr->can('role.view'))
                                 <li class="{{ Route::is('admin.fecha_pagos.index')  || Route::is('admin.fecha_pagos.edit') ? 'active' : '' }}"><a href="{{ route('admin.fecha_pagos.index') }}">fecha de pagos</a></li>
                             @endif
+=======
+>>>>>>> d3cad1fdcba824512c34c5e8bc6fa2cf3e435f4f
                         </ul>
                     </li>
                     @endif
@@ -108,7 +138,11 @@
                     <!-- Gestión Comunicaciones  -->
                     @if ($usr->can('mensajes.create') || $usr->can('role.view') ||  $usr->can('role.edit') ||  $usr->can('role.delete'))
                     <li>
+<<<<<<< HEAD
                         <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-comments"></i><span>
+=======
+                        <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-tasks"></i><span>
+>>>>>>> d3cad1fdcba824512c34c5e8bc6fa2cf3e435f4f
                         Gestión Comunicaciones
                         </span></a>
                         <ul class="collapse {{ Route::is('admin.mensajes.create') || Route::is('admin.mensajes.index') || Route::is('admin.mensajes.edit') || Route::is('admin.mensajes.show') ? 'in' : '' }}">

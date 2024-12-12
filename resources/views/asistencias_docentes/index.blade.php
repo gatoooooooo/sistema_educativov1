@@ -1,6 +1,10 @@
 @extends('backend.layouts.master')
 
+<<<<<<< HEAD
+@section('title', 'Lista de docent')
+=======
 @section('title', 'Lista de Estudiantes')
+>>>>>>> d3cad1fdcba824512c34c5e8bc6fa2cf3e435f4f
 
 @section('styles')
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">

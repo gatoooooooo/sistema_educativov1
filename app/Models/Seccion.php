@@ -9,34 +9,54 @@ class Seccion extends Model
 {
     use HasFactory;
 
-    // Los campos que se pueden llenar masivamente
-    protected $fillable = [
-        'curso_id',
-        'docente_id',
-        'horario_id',
-        'estudiantes', // Campo que contiene la lista de estudiantes
-    ];
+    // Especificar el nombre de la tabla si no es el predeterminado
+    protected $table = 'secciones';
 
-    // Convierte el campo 'estudiantes' a un array JSON
-    protected $casts = [
-        'estudiantes' => 'array',
-    ];
+    protected $fillable = ['nombre', 'curso_id', 'docente_id', 'horario_id', 'capacidad'];
 
-    // Relación con el modelo Curso
-    public function curso()
+
+    // Relación con el curso
+    public function Curso()
     {
         return $this->belongsTo(Curso::class);
     }
 
-    // Relación con el modelo Docente
+    // Relación con el docente
     public function docente()
     {
         return $this->belongsTo(Docente::class);
     }
 
-    // Relación con el modelo Horario
-    public function horario()
+    // Relación con los estudiantes
+    public function estudiantes()
+    {
+        return $this->belongsToMany(Estudiante::class, 'seccion_estudiante', 'seccion_id', 'registro_estudiante_id');
+    }
+
+
+    public function Horario()
     {
         return $this->belongsTo(Horario::class);
+    }
+    // Agregar un estudiante a la sección
+    public function agregarEstudiante(Estudiante $estudiante)
+    {
+        // Verificar si hay espacio en la sección
+        if ($this->estudiantes()->count() < $this->capacidad) {
+            $this->estudiantes()->attach($estudiante);
+            return true;
+        }
+        return false;
+    }
+
+    // Eliminar un estudiante de la sección
+    public function eliminarEstudiante(RegistroEstudiante $estudiante)
+    {
+        // Verificar si el estudiante está registrado en esta sección
+        if ($this->estudiantes()->where('registro_estudiante_id', $estudiante->id)->exists()) {
+            $this->estudiantes()->detach($estudiante);
+            return true;
+        }
+        return false;
     }
 }
