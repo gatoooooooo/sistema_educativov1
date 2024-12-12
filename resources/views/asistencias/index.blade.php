@@ -16,7 +16,10 @@
         @if(session('success'))
             <div class="alert alert-success">{{ session('success') }}</div>
         @endif
+<<<<<<< HEAD
         
+=======
+>>>>>>> d3cad1fdcba824512c34c5e8bc6fa2cf3e435f4f
 
         <table id="dataTable" class="table table-bordered table-striped">
             <thead>

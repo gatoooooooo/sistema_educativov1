@@ -1,5 +1,9 @@
 <?php
 
+<<<<<<< HEAD
+=======
+use App\Http\Controllers\GradoController;
+>>>>>>> d3cad1fdcba824512c34c5e8bc6fa2cf3e435f4f
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -23,7 +27,10 @@ use App\Http\Controllers\MensajeController;
 use App\Http\Controllers\AsistenciaController;
 use App\Http\Controllers\PersonaController;
 use App\Http\Controllers\SeccionController;
+<<<<<<< HEAD
 use App\Http\Controllers\FechaPagoController;
+=======
+>>>>>>> d3cad1fdcba824512c34c5e8bc6fa2cf3e435f4f
 
 
 /*
@@ -74,6 +81,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 });
 
 Route::prefix('admin')->name('admin.')->group(function () {
+<<<<<<< HEAD
   Route::resource('estudiantes', EstudianteController::class);
   Route::get('estudiantes', [EstudianteController::class, 'index'])->name('estudiantes.index');
   Route::get('estudiantes/create', [EstudianteController::class, 'create'])->name('estudiantes.create');
@@ -85,13 +93,30 @@ Route::prefix('admin')->name('admin.')->group(function () {
   Route::get('/asistencias/marcar/{id}', [AsistenciaController::class, 'marcarAsistencia'])->name('asistencias.marcar');
 
   Route::get('estudiantes/{id}/ver', [EstudianteController::class, 'show'])->name('admin.estudiantes.show');
+=======
+    Route::resource('estudiantes', EstudianteController::class);
+    Route::get('estudiantes', [EstudianteController::class, 'index'])->name('estudiantes.index');
+    Route::get('estudiantes/create', [EstudianteController::class, 'create'])->name('estudiantes.create');
+    Route::post('estudiantes', [EstudianteController::class, 'store'])->name('estudiantes.store');
+    Route::get('estudiantes/{estudiante}', [EstudianteController::class, 'show'])->name('estudiantes.show');
+    Route::get('estudiantes/{estudiante}/edit', [EstudianteController::class, 'edit'])->name('estudiantes.edit');
+    Route::put('estudiantes/{estudiante}', [EstudianteController::class, 'update'])->name('estudiantes.update');
+    Route::delete('estudiantes/{estudiante}', [EstudianteController::class, 'destroy'])->name('estudiantes.destroy');
+    Route::get('/asistencias/marcar/{id}', [AsistenciaController::class, 'marcarAsistencia'])->name('asistencias.marcar');
+
+    Route::get('estudiantes/{id}/ver', [EstudianteController::class, 'show'])->name('admin.estudiantes.show');
+>>>>>>> d3cad1fdcba824512c34c5e8bc6fa2cf3e435f4f
 
 });
 
 Route::prefix('admin')->name('admin.')->group(function () {
   Route::get('/notas', [NotaController::class, 'index'])->name('notas.index');
   Route::get('/notas/create', [NotaController::class, 'create'])->name('notas.create');
+<<<<<<< HEAD
   Route::post('/notas', [NotaController::class, 'store'])->name('notas.store'); // Eliminado el prefijo extra '/admin'
+=======
+  Route::post('/notas', [NotaController::class, 'store'])->name('notas.store');  // Ruta correcta
+>>>>>>> d3cad1fdcba824512c34c5e8bc6fa2cf3e435f4f
 });
 
 
@@ -121,7 +146,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
   Route::delete('horarios/{horario}', [HorariosController::class, 'destroy'])->name('horarios.destroy');
 });
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> d3cad1fdcba824512c34c5e8bc6fa2cf3e435f4f
 Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
 
     Route::get('asistencias', [AsistenciaController::class, 'index'])->name('asistencias.index');
@@ -133,6 +161,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
 });
 
 Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
+<<<<<<< HEAD
   // routes/web.php
 
   Route::get('asistencias_docentes/create', [AsistenciaDocenteController::class, 'create'])->name('asistencias_docentes.create');
@@ -144,6 +173,11 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
 });
 
 
+=======
+  Route::resource('asistencias_docentes', AsistenciaDocenteController::class);
+});
+
+>>>>>>> d3cad1fdcba824512c34c5e8bc6fa2cf3e435f4f
 Route::prefix('admin')->name('admin.')->group(function () {
   Route::resource('evaluaciones', EvaluacionController::class);
 });
@@ -161,6 +195,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 });
 
 Route::prefix('admin')->middleware('auth')->group(function () {
+<<<<<<< HEAD
   Route::get('secciones', [SeccionController::class, 'index'])->name('admin.secciones.index');
   Route::get('secciones/create', [SeccionController::class, 'create'])->name('admin.secciones.create');
   Route::post('secciones', [SeccionController::class, 'store'])->name('admin.secciones.store');
@@ -182,6 +217,26 @@ Route::prefix('admin')->name('admin.')->group(function () {
   Route::resource('fecha_pagos', FechaPagoController::class);
 });
 
+=======
+    Route::get('secciones', [SeccionController::class, 'index'])->name('admin.secciones.index');
+    Route::get('secciones/create', [SeccionController::class, 'create'])->name('admin.secciones.create');
+    Route::post('secciones', [SeccionController::class, 'store'])->name('admin.secciones.store');
+    Route::get('secciones/{seccion}/edit', [SeccionController::class, 'edit'])->name('admin.secciones.edit');
+    Route::put('secciones/{seccion}', [SeccionController::class, 'update'])->name('admin.secciones.update');
+    Route::delete('secciones/{seccion}', [SeccionController::class, 'destroy'])->name('admin.secciones.destroy');
+// Ruta para agregar un estudiante a una sección
+    Route::post('secciones/{id}/agregar-estudiante', [SeccionController::class, 'agregarEstudiante'])->name('admin.secciones.agregarEstudiante');
+
+// Ruta para eliminar un estudiante de una sección
+    Route::delete('secciones/{id}/eliminar-estudiante/{estudiante_id}', [SeccionController::class, 'eliminarEstudiante'])->name('admin.secciones.eliminarEstudiante');
+
+});
+
+Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
+    // Rutas para el manejo de grados
+    Route::resource('grados', GradoController::class);
+});
+>>>>>>> d3cad1fdcba824512c34c5e8bc6fa2cf3e435f4f
   //  Route::prefix('admin')->group(function () {
    // Route::get('RegistroCurso', [RegistroCursoController::class, 'index'])->name('admin.RegistroCurso.index');
 //});

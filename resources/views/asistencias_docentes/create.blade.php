@@ -2,6 +2,7 @@
 
 @section('title', 'Registrar Asistencia de Docente')
 
+<<<<<<< HEAD
 @section('styles')
     <style>
         /* Estilos personalizados */
@@ -48,6 +49,8 @@
     </style>
 @endsection
 
+=======
+>>>>>>> d3cad1fdcba824512c34c5e8bc6fa2cf3e435f4f
 @section('admin-content')
     <div class="page-title-area">
         <div class="row align-items-center">
@@ -68,6 +71,7 @@
     </div>
 
     <div class="main-content-inner">
+<<<<<<< HEAD
         <div class="row justify-content-center">
             <div class="col-lg-8 mt-5">
                 <div class="card">
@@ -76,6 +80,14 @@
                         <a href="{{ route('admin.asistencias_docentes.index') }}" class="btn btn-secondary mb-3">
                             <i class="fas fa-arrow-left"></i> Volver al Listado
                         </a>
+=======
+        <div class="row">
+            <div class="col-lg-12 mt-5">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="header-title">Registrar Nueva Asistencia de Docente</h4>
+                        <a href="{{ route('admin.asistencias_docentes.index') }}" class="btn btn-secondary mb-3">Volver al Listado</a>
+>>>>>>> d3cad1fdcba824512c34c5e8bc6fa2cf3e435f4f
                         @include('backend.layouts.partials.messages')
 
                         <form action="{{ route('admin.asistencias_docentes.store') }}" method="POST">
@@ -104,11 +116,15 @@
                                 </select>
                             </div>
 
+<<<<<<< HEAD
                             <div class="text-center mt-4">
                                 <button type="submit" class="btn btn-success">
                                     <i class="fas fa-save"></i> Registrar Asistencia
                                 </button>
                             </div>
+=======
+                            <button type="submit" class="btn btn-success mt-3">Registrar Asistencia</button>
+>>>>>>> d3cad1fdcba824512c34c5e8bc6fa2cf3e435f4f
                         </form>
                     </div>
                 </div>

@@ -28,8 +28,11 @@ class Curso extends Model
     {
         return $this->hasMany(Nota::class, 'curso_id');
     }
+<<<<<<< HEAD
     public function asistencias()
     {
         return $this->hasMany(Asistencia::class);
     }
+=======
+>>>>>>> d3cad1fdcba824512c34c5e8bc6fa2cf3e435f4f
 }

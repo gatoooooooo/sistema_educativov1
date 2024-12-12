@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+<<<<<<< HEAD
     <style>
         .form-group {
             margin-bottom: 1.2rem;
@@ -81,6 +82,8 @@
             margin-bottom: 1.5rem;
         }
     </style>
+=======
+>>>>>>> d3cad1fdcba824512c34c5e8bc6fa2cf3e435f4f
 @endsection
 
 @section('admin-content')
@@ -103,13 +106,18 @@
     <div class="main-content-inner">
         <div class="row">
             <div class="col-12 mt-5">
+<<<<<<< HEAD
                 <div class="card">
+=======
+                <div class="card shadow-lg">
+>>>>>>> d3cad1fdcba824512c34c5e8bc6fa2cf3e435f4f
                     <div class="card-body">
                         <h4 class="header-title text-center">Crear Estudiante</h4>
                         @include('backend.layouts.partials.messages')
 
                         <form action="{{ route('admin.estudiantes.store') }}" method="POST">
                             @csrf
+<<<<<<< HEAD
                             <div class="form-row">
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -165,6 +173,49 @@
                                     </div>
                                 </div>
 
+=======
+                            <div class="form-group">
+                                <label for="nombre">Nombre:</label>
+                                <input required type="text" name="nombre" id="nombre" class="form-control" value="{{ old('nombre') }}">
+                                @error('nombre')
+                                <small class="text-danger">{{ '*' . $message }}</small>
+                                @enderror
+                            </div>
+
+                            <div class="form-group">
+                                <label for="apellido">Apellido:</label>
+                                <input required type="text" name="apellido" id="apellido" class="form-control" value="{{ old('apellido') }}">
+                                @error('apellido')
+                                <small class="text-danger">{{ '*' . $message }}</small>
+                                @enderror
+                            </div>
+
+                            <div class="form-group">
+                                <label for="direccion">Dirección (Opcional):</label>
+                                <input type="text" name="direccion" id="direccion" class="form-control" value="{{ old('direccion') }}">
+                                @error('direccion')
+                                <small class="text-danger">{{ '*' . $message }}</small>
+                                @enderror
+                            </div>
+
+                            <div class="form-group">
+                                <label for="telefono">Teléfono (Opcional):</label>
+                                <input type="text" name="telefono" id="telefono" class="form-control" value="{{ old('telefono') }}">
+                                @error('telefono')
+                                <small class="text-danger">{{ '*' . $message }}</small>
+                                @enderror
+                            </div>
+
+                            <div class="form-group">
+                                <label for="correo_electronico">Correo Electrónico (Opcional):</label>
+                                <input type="email" name="correo_electronico" id="correo_electronico" class="form-control" value="{{ old('correo_electronico') }}">
+                                @error('correo_electronico')
+                                <small class="text-danger">{{ '*' . $message }}</small>
+                                @enderror
+                            </div>
+
+                            <div class="row">
+>>>>>>> d3cad1fdcba824512c34c5e8bc6fa2cf3e435f4f
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="grado_id">Grado:</label>
@@ -181,6 +232,7 @@
                                 </div>
                             </div>
 
+<<<<<<< HEAD
                             <div class="form-row">
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -229,6 +281,44 @@
                                         @enderror
                                     </div>
                                 </div>
+=======
+                            <div class="form-group">
+                                <label for="fecha_ingreso">Fecha de Ingreso:</label>
+                                <input type="date" name="fecha_ingreso" id="fecha_ingreso" class="form-control" value="{{ old('fecha_ingreso') }}" required>
+                                @error('fecha_ingreso')
+                                <small class="text-danger">{{ '*' . $message }}</small>
+                                @enderror
+                            </div>
+
+                            <div class="form-group">
+                                <label for="documento_tipo">Tipo de Documento</label>
+                                <select class="form-control" id="documento_tipo" name="documento_tipo" required>
+                                    <option value="DNI" {{ old('documento_tipo', $estudiante->documento_tipo ?? 'DNI') == 'DNI' ? 'selected' : '' }}>DNI</option>
+                                    <option value="Carnet de extranjería" {{ old('documento_tipo', $estudiante->documento_tipo ?? 'DNI') == 'Carnet de extranjería' ? 'selected' : '' }}>Carnet de extranjería</option>
+                                    <option value="Pasaporte" {{ old('documento_tipo', $estudiante->documento_tipo ?? 'DNI') == 'Pasaporte' ? 'selected' : '' }}>Pasaporte</option>
+                                    <option value="Otro" {{ old('documento_tipo', $estudiante->documento_tipo ?? 'DNI') == 'Otro' ? 'selected' : '' }}>Otro</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="documento_numero">Número de Documento:</label>
+                                <input type="text" name="documento_numero" id="documento_numero" class="form-control" value="{{ old('documento_numero') }}" required>
+                                @error('documento_numero')
+                                <small class="text-danger">{{ '*' . $message }}</small>
+                                @enderror
+                            </div>
+
+                            <div class="form-group">
+                                <label for="genero">Género:</label>
+                                <select name="genero" id="genero" class="form-control" required>
+                                    <option value="">Seleccionar género</option>
+                                    <option value="masculino" {{ old('genero') == 'masculino' ? 'selected' : '' }}>Masculino</option>
+                                    <option value="femenino" {{ old('genero') == 'femenino' ? 'selected' : '' }}>Femenino</option>
+                                </select>
+                                @error('genero')
+                                <small class="text-danger">{{ '*' . $message }}</small>
+                                @enderror
+>>>>>>> d3cad1fdcba824512c34c5e8bc6fa2cf3e435f4f
                             </div>
 
                             <div class="form-group">

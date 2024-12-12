@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+=======
+<!-- resources/views/backend/estudiantes/show.blade.php -->
+
+>>>>>>> d3cad1fdcba824512c34c5e8bc6fa2cf3e435f4f
 @extends('backend.layouts.master')
 
 @section('title')
@@ -9,6 +14,7 @@
         .student-detail {
             margin-top: 20px;
         }
+<<<<<<< HEAD
 
         .student-detail table {
             width: 100%;
@@ -72,6 +78,8 @@
             background-color: #5a6268;
             border-color: #545b62;
         }
+=======
+>>>>>>> d3cad1fdcba824512c34c5e8bc6fa2cf3e435f4f
     </style>
 @endsection
 
@@ -125,7 +133,11 @@
                                 </tr>
                                 <tr>
                                     <th>Fecha de Ingreso</th>
+<<<<<<< HEAD
                                     <td>{{ \Carbon\Carbon::parse($estudiante->fecha_ingreso)->format('d-m-Y') }}</td>
+=======
+                                    <td>{{ $estudiante->fecha_ingreso }}</td>
+>>>>>>> d3cad1fdcba824512c34c5e8bc6fa2cf3e435f4f
                                 </tr>
                                 <tr>
                                     <th>Género</th>
@@ -133,7 +145,11 @@
                                 </tr>
                                 <tr>
                                     <th>Fecha de Nacimiento</th>
+<<<<<<< HEAD
                                     <td>{{ \Carbon\Carbon::parse($estudiante->fecha_nacimiento)->format('d-m-Y') }}</td>
+=======
+                                    <td>{{ $estudiante->fecha_nacimiento }}</td>
+>>>>>>> d3cad1fdcba824512c34c5e8bc6fa2cf3e435f4f
                                 </tr>
                                 <tr>
                                     <th>Dirección</th>

@@ -11,9 +11,15 @@
             <div class="login-box ptb--100">
                 <form method="POST" action="{{ route('admin.login.submit') }}">
                     @csrf
+<<<<<<< HEAD
                     <div class="login-form-head" style="align-items: center; padding: 20px; border-radius: 20px;">
                     <img src="{{ asset('backend/assets/images/img/logo.png') }}" alt="Logo" style="width: 80px; height: 80px;">
                         <h4>Iniciar sesion</h4>
+=======
+                    <div class="login-form-head">
+                        <h4>Sign In</h4>
+                        <p>Hello there, Sign in and start managing your Admin Panel</p>
+>>>>>>> d3cad1fdcba824512c34c5e8bc6fa2cf3e435f4f
                     </div>
                     <div class="login-form-body">
                         @include('backend.layouts.partials.messages')

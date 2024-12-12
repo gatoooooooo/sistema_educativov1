@@ -17,8 +17,11 @@ class Nota extends Model
         'nota3',
         'fecha',
         'comentarios',
+<<<<<<< HEAD
         'fecha_registro',
 
+=======
+>>>>>>> d3cad1fdcba824512c34c5e8bc6fa2cf3e435f4f
     ];
 
     // Relación con el modelo Estudiante

@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+<<<<<<< HEAD
     <style>
         /* Colores institucionales */
         :root {
@@ -61,36 +62,57 @@
             color: var(--color-primario);
         }
     </style>
+=======
+>>>>>>> d3cad1fdcba824512c34c5e8bc6fa2cf3e435f4f
 @endsection
 
 @section('admin-content')
     <div class="page-title-area">
         <div class="row align-items-center">
             <div class="col-sm-6">
+<<<<<<< HEAD
                 <h4 class="page-title">Crear Grado</h4>
                 <ul class="breadcrumbs">
+=======
+                <h4 class="page-title pull-left">Crear Grado</h4>
+                <ul class="breadcrumbs pull-left">
+>>>>>>> d3cad1fdcba824512c34c5e8bc6fa2cf3e435f4f
                     <li><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
                     <li><a href="{{ route('admin.grados.index') }}">Grados</a></li>
                     <li><span>Crear Grado</span></li>
                 </ul>
             </div>
+<<<<<<< HEAD
             <div class="col-sm-6 text-right">
+=======
+            <div class="col-sm-6 clearfix">
+>>>>>>> d3cad1fdcba824512c34c5e8bc6fa2cf3e435f4f
                 @include('backend.layouts.partials.logout')
             </div>
         </div>
     </div>
 
+<<<<<<< HEAD
     <div class="main-content-inner mt-4">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card shadow-lg border-light">
                     <div class="card-body">
                         <h4 class="header-title text-center mb-4">Crear Grado</h4>
+=======
+    <div class="main-content-inner">
+        <div class="row">
+            <div class="col-12 mt-5">
+                <div class="card shadow-lg">
+                    <div class="card-body">
+                        <h4 class="header-title text-center">Crear Grado</h4>
+>>>>>>> d3cad1fdcba824512c34c5e8bc6fa2cf3e435f4f
                         @include('backend.layouts.partials.messages')
 
                         <form action="{{ route('admin.grados.store') }}" method="POST">
                             @csrf
                             <div class="form-group">
+<<<<<<< HEAD
                                 <label for="nombre" class="font-weight-bold">Nombre del Grado:</label>
                                 <input type="text" name="nombre" id="nombre" class="form-control" value="{{ old('nombre') }}" required aria-describedby="nombreHelp">
                                 @error('nombre')
@@ -112,6 +134,25 @@
                                 <button type="submit" class="btn btn-success btn-lg">
                                     <i class="fas fa-save"></i> Guardar
                                 </button>
+=======
+                                <label for="nombre">Nombre del Grado:</label>
+                                <input required type="text" name="nombre" id="nombre" class="form-control" value="{{ old('nombre') }}">
+                                @error('nombre')
+                                <small class="text-danger">{{ '*' . $message }}</small>
+                                @enderror
+                            </div>
+
+                            <div class="form-group">
+                                <label for="descripcion">Descripción (Opcional):</label>
+                                <textarea name="descripcion" id="descripcion" rows="3" class="form-control">{{ old('descripcion') }}</textarea>
+                                @error('descripcion')
+                                <small class="text-danger">{{ '*' . $message }}</small>
+                                @enderror
+                            </div>
+
+                            <div class="form-group text-center">
+                                <button type="submit" class="btn btn-success btn-lg">Guardar <i class="fas fa-save"></i></button>
+>>>>>>> d3cad1fdcba824512c34c5e8bc6fa2cf3e435f4f
                             </div>
                         </form>
                     </div>
@@ -124,7 +165,11 @@
 @section('scripts')
     <script>
         $(document).ready(function() {
+<<<<<<< HEAD
             // Inicializar Select2 si se agregan selectores en el futuro
+=======
+            // Inicializar Select2 (si se agregan selectores en un futuro)
+>>>>>>> d3cad1fdcba824512c34c5e8bc6fa2cf3e435f4f
             $('.select2').select2({
                 width: '100%'
             });

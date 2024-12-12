@@ -2,6 +2,7 @@
 
 @section('title', 'Crear Curso - Panel de Administración')
 
+<<<<<<< HEAD
 @section('styles')
     <style>
         /* Colores institucionales */
@@ -71,6 +72,8 @@
     </style>
 @endsection
 
+=======
+>>>>>>> d3cad1fdcba824512c34c5e8bc6fa2cf3e435f4f
 @section('admin-content')
     <div class="page-title-area">
         <div class="row align-items-center">
@@ -84,7 +87,11 @@
                     </ul>
                 </div>
             </div>
+<<<<<<< HEAD
             <div class="col-sm-6 text-right">
+=======
+            <div class="col-sm-6 clearfix">
+>>>>>>> d3cad1fdcba824512c34c5e8bc6fa2cf3e435f4f
                 @include('backend.layouts.partials.logout')
             </div>
         </div>
@@ -93,7 +100,11 @@
     <div class="main-content-inner">
         <div class="row">
             <div class="col-lg-12 mt-5">
+<<<<<<< HEAD
                 <div class="card shadow-lg border-light">
+=======
+                <div class="card">
+>>>>>>> d3cad1fdcba824512c34c5e8bc6fa2cf3e435f4f
                     <div class="card-body">
                         <h4 class="header-title">Crear Nuevo Curso</h4>
                         @include('backend.layouts.partials.messages')
@@ -101,6 +112,7 @@
                         <form action="{{ route('admin.cursos.store') }}" method="POST">
                             @csrf
 
+<<<<<<< HEAD
                             <!-- Nombre del Curso -->
                             <div class="form-group">
                                 <label for="nombre">Nombre del Curso</label>
@@ -135,6 +147,26 @@
                                 @error('fecha_fin')
                                     <small class="text-danger">{{ '*' . $message }}</small>
                                 @enderror
+=======
+                            <div class="form-group">
+                                <label for="nombre">Nombre del Curso</label>
+                                <input type="text" name="nombre" id="nombre" value="{{ old('nombre') }}" class="form-control" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="descripcion">Descripción</label>
+                                <textarea name="descripcion" id="descripcion" rows="4" class="form-control" required>{{ old('descripcion') }}</textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="fecha_inicio">Fecha de Inicio</label>
+                                <input type="date" name="fecha_inicio" id="fecha_inicio" value="{{ old('fecha_inicio') }}" class="form-control" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="fecha_fin">Fecha de Fin</label>
+                                <input type="date" name="fecha_fin" id="fecha_fin" value="{{ old('fecha_fin') }}" class="form-control" required>
+>>>>>>> d3cad1fdcba824512c34c5e8bc6fa2cf3e435f4f
                             </div>
 
                             <button type="submit" class="btn btn-primary mt-3">Crear Curso</button>
