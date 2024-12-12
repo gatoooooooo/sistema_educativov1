@@ -26,7 +26,7 @@ use Illuminate\Http\Request;
                 'registro_estudiante_id' => 'required|exists:registro_estudiantes,id',
                 'monto' => 'required|numeric|min:0',
                 'fecha_pago' => 'required|date',
-                'estado' => 'required|in:Pagado,Pendiente,Vencido',
+                'Tipo de pago' => 'required|in:Matricula,Mensualidad',
                 'metodo_pago' => 'required|in:Efectivo,Transferencia,Tarjeta de Crédito',
                 'referencia' => 'nullable|string|max:255',
             ]);

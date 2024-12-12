@@ -52,11 +52,11 @@
     </div>
 
     <div class="form-group">
-        <label for="estado">Estado</label>
-        <select name="estado" id="estado" class="form-control" required>
-            <option value="Pagado">Pagado</option>
-            <option value="Pendiente">Pendiente</option>
-            <option value="Vencido">Vencido</option>
+        <label for="Tipo de pago">Tipo de pago </label>
+        <select name="tipo de pago" id="tipo de pago" class="form-control" required>
+            <option value="Matricula">Matricula</option>
+            <option value="Mensualidad">Mensualidad</option>
+            
         </select>
     </div>
 

@@ -82,6 +82,9 @@
                                 <li class="{{ Route::is('admin.evaluaciones.index')  || Route::is('admin.evaluaciones.edit') ? 'active' : '' }}"><a href="{{ route('admin.evaluaciones.index') }}">evaluaciones</a></li>
                             @endif
                             @if ($usr->can('role.view'))
+                                <li class="{{ Route::is('admin.grados.index')  || Route::is('admin.grados.edit') ? 'active' : '' }}"><a href="{{ route('admin.grados.index') }}">Grados</a></li>
+                            @endif
+                            @if ($usr->can('role.view'))
                                 <li class="{{ Route::is('admin.secciones.index')  || Route::is('admin.secciones.edit') ? 'active' : '' }}"><a href="{{ route('admin.secciones.index') }}">secciones</a></li>
                             @endif
                         </ul>

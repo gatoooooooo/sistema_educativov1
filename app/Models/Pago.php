@@ -15,7 +15,7 @@ class Pago extends Model
         'registro_estudiante_id',
         'monto',
         'fecha_pago',
-        'estado',
+        'Tipo de pago ',
         'metodo_pago',
         'referencia',
         'fecha_registro',

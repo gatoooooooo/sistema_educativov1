@@ -50,7 +50,7 @@ class AsistenciaDocenteController extends Controller
         $asistencia = AsistenciaDocente::findOrFail($id);
         $asistencia->update($request->all());
 
-        return redirect()->route('asistencias_docentes.index')->with('success', 'Asistencia actualizada correctamente.');
+        return redirect()->route('admin.asistencias_docentes.index')->with('success', 'Asistencia actualizada correctamente.');
     }
 
     public function destroy($id)
